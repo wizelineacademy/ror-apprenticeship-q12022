@@ -1,9 +1,10 @@
-# Ruby on Rails Learning Path
+# RoR Apprenticeship Day 3
 
 ## Introduction
 
-Thank you for participating in the RoR Apprenticeship Program!
-Here, you'll find instructions for completing your project.
+Please read this document carefully.
+
+Welcome to the Third Practice Day of the RoR Apprenticeship. This document is intended to guide you about today's activities; the do's and dont's and how to get the best from them. Please ask in #ror_apprenticeship in case you have not cleared something or if you have any doubts.
 
 ## The Challenge
 
