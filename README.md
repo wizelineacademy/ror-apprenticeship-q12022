@@ -23,10 +23,18 @@ For submitting your work, you should follow these steps:
 ## Prerequisites
 
 <table>
-  <tr>
-    <td>Ruby</td>
-    <td> > 2.5.0</td>
-  </tr>
+    <thead>
+        <tr>
+            <th>Dependency</th>
+            <th>Version</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Ruby</td>
+            <td> > 2.5.0</td>
+        </tr>
+    </tbody>
 </table>
 
 NOTE: You can install Ruby through [Homebrew](https://brew.sh/) as well if you have not done it yet. To do that, type in your terminal:
