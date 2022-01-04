@@ -28,6 +28,31 @@ Activity 4) On the _environment.rb_ file create a module named _Environment_ and
 
 The Depot class contains a [Hash](https://ruby-doc.org/core-3.0.2/Hash.html) called @packs which is fully accessible for other classes with the following data.
 
+<table>
+  <tr>
+    <th>simple_transportation_pack</th>
+    <th>intelligence => [:cellphone]
+    <br>items => [:medipack, :chevy_versa]</th>
+  </tr>
+  <tr>
+    <td>standard_transportation_pack</td>
+    <td>intelligence => [:cellphone, :antenna]
+    <br>arsenal => [:colt_1911]
+    <br>items => [:handcuffs, :medipack, :chemistry, :chevy_versa]</td>
+  </tr>
+  <tr>
+    <td>simple_mission_pack</td>
+    <td>intelligence => [:infopack, :laptop, :cellphone, :antenna]
+    <br>arsenal=> [:colt_1911]
+    <britems => [:handcuffs, :medipack, :chemistry, :financial]</td>
+  </tr>
+  <tr>
+    <td>standard_mission_pack</td>
+    <td>intelligence => [:infopack, :laptop, :cellphone, :antenna]
+    <br>arsenal => [:remington_870, :colt_1911, :machete, :hatchet]
+    <br>items => [:handcuffs, :medipack, :chemistry, :financial]</td>
+  </tr>
+</table>
 
 ## The Challenge
 
