@@ -6,6 +6,22 @@ Please read this document carefully.
 
 Welcome to the *Third Practice Day of the RoR Apprenticeship*. This document is intended to guide you about today's activities; the *do's* and *dont's* and how to get the best from them. Please ask in the *Slack* channel **_#ror_apprenticeship_** in case you have not cleared something or if you have any doubts.
 
+## Getting Started
+
+To get started, follow these steps:
+
+1. [Fork this project](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
+2. Commit periodically
+3. Have fun!
+
+## Submitting the deliverables
+
+For submitting your work, you should follow these steps:
+
+1. Create a [pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork) with your code, targeting the main branch of your fork, make sure your PRs name includes your name to easily identify them
+2. Make sure you are adding Apostat23, hivanreyes, Rikard189 as reviewers and post your link in the slack channel
+3. Stay tune for feedback
+
 ## Setup
 
 For Ruby installation you will be required to use your Mac’s Admin password, ask your *Discipline Lead* in case you do not know it. You need to install [Homebrew](https://brew.sh/) as well if you have not done it yet. Then type in your terminal to install Ruby:
@@ -30,9 +46,9 @@ The Depot class contains a [Hash](https://ruby-doc.org/core-3.0.2/Hash.html) cal
 
 <table>
   <tr>
-    <th>simple_transportation_pack</th>
-    <th>intelligence => [:cellphone]
-    <br>items => [:medipack, :chevy_versa]</th>
+    <td>simple_transportation_pack</td>
+    <td>intelligence => [:cellphone]
+    <br>items => [:medipack, :chevy_versa]</td>
   </tr>
   <tr>
     <td>standard_transportation_pack</td>
@@ -43,7 +59,7 @@ The Depot class contains a [Hash](https://ruby-doc.org/core-3.0.2/Hash.html) cal
   <tr>
     <td>simple_mission_pack</td>
     <td>intelligence => [:infopack, :laptop, :cellphone, :antenna]
-    <br>arsenal=> [:colt_1911]
+    <br>arsenal => [:colt_1911]
     <britems => [:handcuffs, :medipack, :chemistry, :financial]</td>
   </tr>
   <tr>
@@ -51,6 +67,16 @@ The Depot class contains a [Hash](https://ruby-doc.org/core-3.0.2/Hash.html) cal
     <td>intelligence => [:infopack, :laptop, :cellphone, :antenna]
     <br>arsenal => [:remington_870, :colt_1911, :machete, :hatchet]
     <br>items => [:handcuffs, :medipack, :chemistry, :financial]</td>
+  </tr>
+</table>
+
+All references must be managed as Symbol type. This data must be accessible from the game.rb file with calls like:
+
+<table>
+  <tr>
+    <td>game.depot.packs[:simple_transportation_pack]
+    <br>game.depot.packs[:standard_mission_pack]
+    <br>game.depot.packs[:standard_mission_pack][:items]</td>
   </tr>
 </table>
 
@@ -90,14 +116,6 @@ Nice to have:
   - Unit Test (RSpec, matchers, mocks)
   - E2E
 
-## Getting Started
-
-To get started, follow these steps:
-
-1. [Fork this project](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
-2. Commit periodically
-3. Have fun!
-
 ## Deliverables
 Please take this challenge seriously and try to make progress constantly, we will be providing feedback so if you are struggling with something, contact the mentors and peers to get help on time. Feel free to use the slack channel available.
 
@@ -114,11 +132,3 @@ Based on the self-study material is expected to have at the end of the modulo 2
 - Authentication
 - Tests
 - Clean code
-
-## Submitting the deliverables
-
-For submitting your work, you should follow these steps:
-
-1. Create a [pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork) with your code, targeting the main branch of your fork, make sure your PRs name includes your name to easily identify them
-2. Make sure you are adding Apostat23, hivanreyes, Rikard189 as reviewers and post your link in the slack channel
-3. Stay tune for feedback
