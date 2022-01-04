@@ -70,15 +70,20 @@ The Depot class contains a [Hash](https://ruby-doc.org/core-3.0.2/Hash.html) cal
   </tr>
 </table>
 
-All references must be managed as Symbol type. This data must be accessible from the game.rb file with calls like:
+All references must be managed as [Symbol](https://ruby-doc.org/core-2.5.0/Symbol.html) type. This data must be accessible from the **_game.rb_** file with calls like:
 
-<table>
-  <tr>
-    <td><center>game.depot.packs[:simple_transportation_pack]
-    <br>game.depot.packs[:standard_mission_pack]
-    <br>game.depot.packs[:standard_mission_pack][:items]</center></td>
-  </tr>
-</table>
+> game.depot.packs[:simple_transportation_pack]
+> game.depot.packs[:standard_mission_pack]
+> game.depot.packs[:standard_mission_pack][:items]
+
+The _Control_ class contains a [Hash](https://ruby-doc.org/core-3.0.2/Hash.html) named _@missions_ which is fully accessible for other classes.
+
+The class has a _new_mission_ method which receives three parameters called _name_, _objective_ and _pack_; then stores these parameters in _@missions_ where _name_ is the key and the rest of the data the values, a new variable _status_ must be added and must be set to _:active_, all these must be saved as a [Hash](https://ruby-doc.org/core-3.0.2/Hash.html) itself. This method should be able to respond to such calls as in the chart below and _@missions_ should be able to display info as shown.
+
+> $ name = :alpha and objective = 'Get Alpha to the base' and pack = :simple_transportation_pack
+> $ game.new_mission name: name, objective: objective, pack: game.depot.packs[pack]
+> $ puts game.control.missions[:alpha]
+
 
 ## The Challenge
 
