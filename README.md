@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Welcome to the *Third Practice Day of the RoR Apprenticeship*. This document is intended to guide you about today's activities; the *do's* and *dont's* and how to get the best from them. Please ask in the *Slack* channel `#ror_apprenticeship` in case you have not cleared something or if you have any doubts.
+Welcome to the *Third Practice Day of the RoR Apprenticeship*. This readme is intended to guide you about today's activities; the *do's* and *dont's* and how to get the best from them. Please ask in the *Slack* channel `#ror_apprenticeship` in case you have not cleared something or if you have any doubts.
 
 ## Getting Started
 
@@ -186,7 +186,7 @@ In this section you will be required to create two simple classes, the first cal
 
 **1)** The `Dictionary` class contains a fully accessible [Hash](https://ruby-doc.org/core-3.0.2/Hash.html) variable named `@expressions`, This hash has as keys, English expressions such as hello or goodbye in [Symbol](https://ruby-doc.org/core-2.5.0/Symbol.html) format. Its values are hashes as well, with the language codes [:es, :en, :cz] as keys in [Symbol](https://ruby-doc.org/core-2.5.0/Symbol.html) format as well and the values of those keys are the expression itself in the objective language. The below lines can help to understand this.
 
-`@espressions[Hash]`<br>
+`@expressions[Hash]`<br>
 `:hello => { :en => ‘hello’, :es => ‘hola’, :cz => ‘ahoj’ }`<br>
 `:goodbye => { :en => ‘goodbye’, :es => ‘adios’, :cz => ‘nashledanou’ }`<br>
 `:my_name_is => { :en => ‘my name is’, :es => ‘mi nombre es’, :cz => ‘jmenuju se’ }`<br>
