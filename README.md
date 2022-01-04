@@ -23,10 +23,18 @@ For submitting your work, you should follow these steps:
 ## Prerequisites
 
 <table>
-  <tr>
-    <td>Ruby</td>
-    <td> > 2.5.0</td>
-  </tr>
+    <thead>
+        <tr>
+            <th>Dependency</th>
+            <th>Version</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Ruby</td>
+            <td> > 2.5.0</td>
+        </tr>
+    </tbody>
 </table>
 
 NOTE: You can install Ruby through [Homebrew](https://brew.sh/) as well if you have not done it yet. To do that, type in your terminal:
@@ -75,29 +83,35 @@ The Depot class contains a [Hash](https://ruby-doc.org/core-3.0.2/Hash.html) cal
 
 All references must be managed as [Symbol](https://ruby-doc.org/core-2.5.0/Symbol.html) type. This data must be accessible from the `game.rb` file with calls like:
 
-`game.depot.packs[:simple_transportation_pack]`<br>
-`game.depot.packs[:standard_mission_pack]`<br>
-`game.depot.packs[:standard_mission_pack][:items]`
-
+```
+game.depot.packs[:simple_transportation_pack]
+game.depot.packs[:standard_mission_pack]
+game.depot.packs[:standard_mission_pack][:items]
+```
 The `Control` class contains a [Hash](https://ruby-doc.org/core-3.0.2/Hash.html) named `@missions` which is fully accessible for other classes.
 
 The class has a `new_mission` method which receives three parameters called `name`, `objective` and `pack`; then stores these parameters in `@missions` where `name` is the key and the rest of the data the values, a new variable _status_ must be added and must be set to `:active`, all these must be saved as a [Hash](https://ruby-doc.org/core-3.0.2/Hash.html) itself. This method should be able to respond to such calls as in the chart below and `@missions` should be able to display info as shown.
 
-`$ name = :alpha and objective = 'Get Alpha to the base' and pack = :simple_transportation_pack`<br>
-`$ game.new_mission name: name, objective: objective, pack: game.depot.packs[pack]`<br>
-`$ puts game.control.missions[:alpha]`<br>
-` # => {:objective=>"Get Alpha to the base", :status=>:active, :pack=>{:intelligence=>[:cellphone], :items=>[:medipack, :chevy_versa]}}
-`
+```
+$ name = :alpha and objective = 'Get Alpha to the base' and pack = :simple_transportation_pack
+$ game.new_mission name: name, objective: objective, pack: game.depot.packs[pack]
+$ puts game.control.missions[:alpha]
+# => {:objective=>"Get Alpha to the base", :status=>:active, :pack=>{:intelligence=>[:cellphone], :items=>[:medipack, :chevy_versa]}}
+```
 
 Then make use of the Metaprogramming techniques to dynamically generate methods corresponding to each mission state (tip: have an array of states and iterate over it). The method names will be:
-`set_mission_to_paused`
-`set_mission_to_aborted`
-`set_mission_to_failed`
-`set_mission_to_accomplished`
+```
+set_mission_to_paused
+set_mission_to_aborted
+set_mission_to_accomplished
+set_mission_to_failed
+```
 The methods will receive a symbol as argument corresponding to the name of the mission to update and they will be updating the mission status (`@missions[mission][:status]`) accordingly. See the following use example:
 
-`$ game.control.set_mission_to_accomplished(:alpha) and puts game.control.missions[:alpha]`<br>
-`# => {:objective=>"Get Alpha to the base", :status=>:accomplished, :pack=>{:intelligence=>[:cellphone], :items=>[:medipack, :chevy_versa]}}`
+```
+$ game.control.set_mission_to_accomplished(:alpha) and puts game.control.missions[:alpha]
+# => {:objective=>"Get Alpha to the base", :status=>:accomplished, :pack=>{:intelligence=>[:cellphone], :items=>[:medipack, :chevy_versa]}}
+```
 
 Note: Use [define_method](https://apidock.com/ruby/Module/define_method) as described on the [Udemy's Comprehensive Ruby Programming](https://wizeline.udemy.com/course/comprehensive-ruby-programming-tutorial/learn/lecture/4424294#overview) course you have just taken on [Section 15](https://wizeline.udemy.com/course/comprehensive-ruby-programming-tutorial/learn/lecture/4424220#overview).
 
@@ -155,28 +169,35 @@ A simple method called `new_worker` will be created on the `Game` class; this me
 
 Another method called `new_mission` will be created. This method will use the `new_mission` method created on the `Control` class. In this new method, `@control.new_mission` is called with its variables in order to save its result on the `Environment::Control` object that was just created above. On the same method the `@board[:control]` hash will be updated and stored with `:missions` as key and `@control.missions` as value. The methods created should respond to calls such as:
 
-`diego = game.new_worker name: 'Diego'`<br>
-`diego.set_personal_data surname: 'Mota', age: 40, marital_status: :single, children: 0, country: :mx, language: :es`<br>
-`diego.set_professional_data position: 'SE', occupation: 'IT', skills: [:ruby, :blender], observations: 'none'`<br>
-`puts "#{diego.name}, #{diego.class}", diego.personal_data, diego.professional_data`<br>
-
+```
+diego = game.new_worker name: 'Diego'
+diego.set_personal_data surname: 'Mota', age: 40, marital_status: :single, children: 0, country: :mx, language: :es
+diego.set_professional_data position: 'SE', occupation: 'IT', skills: [:ruby, :blender], observations: 'none'
+puts "#{diego.name}, #{diego.class}", diego.personal_data, diego.professional_data
+```
 With outputs similar to:
 
-`# => Diego, Environment::Worker`<br>
-`# => {:surname=>Mota”, :age=>40, :country=>:mx, :language=>:es, :marital_status=>:single, :children=>0}`<br>
-`# =>{:position=>"SE", :occupation=>"IT", :skills=>[:ruby, :blender], :observations=>"none"}`<br>
+```
+# => Diego, Environment::Worker
+# => {:surname=>Mota”, :age=>40, :country=>:mx, :language=>:es, :marital_status=>:single, :children=>0}
+# =>{:position=>"SE", :occupation=>"IT", :skills=>[:ruby, :blender], :observations=>"none"}
+```
 
 You will be required to create an instance of `Game` named game. Then call to the `game.new_mission` method. The call should look like this:
 
-`name = :alpha; objective = 'Get Alpha to the base'; pack = :simple_transportation_pack`<br>
-`game.new_mission name: name, objective: objective, pack: game.depot.packs[pack]`<br>
-`puts game.control.missions[:alpha]`<br>
-`game.control.set_mission_to_accomplished(:alpha) and puts game.control.missions[:alpha]`
+```
+name = :alpha; objective = 'Get Alpha to the base'; pack = :simple_transportation_pack
+game.new_mission name: name, objective: objective, pack: game.depot.packs[pack]
+puts game.control.missions[:alpha]
+game.control.set_mission_to_accomplished(:alpha) and puts game.control.missions[:alpha]
+```
 
 With similar outputs to:
 
-`# => {:objective=>"Get Alpha to the base", :status=>:active, :pack=>{:intelligence=>[:cellphone], :items=>[:medipack, :chevy_versa]}}`
-`# => {:objective=>"Get Alpha to the base", :status=>:accomplished, :pack=>{:intelligence=>[:cellphone], :items=>[:medipack, :chevy_versa]}}`
+```
+# => {:objective=>"Get Alpha to the base", :status=>:active, :pack=>{:intelligence=>[:cellphone], :items=>[:medipack, :chevy_versa]}}
+# => {:objective=>"Get Alpha to the base", :status=>:accomplished, :pack=>{:intelligence=>[:cellphone], :items=>[:medipack, :chevy_versa]}}
+```
 
 This is the end of the _Mandatory Practice_, check the next section in order to know the _Optional Practice_.
 
@@ -186,18 +207,20 @@ In this section you will be required to create two simple classes, the first cal
 
 **1)** The `Dictionary` class contains a fully accessible [Hash](https://ruby-doc.org/core-3.0.2/Hash.html) variable named `@expressions`, This hash has as keys, English expressions such as hello or goodbye in [Symbol](https://ruby-doc.org/core-2.5.0/Symbol.html) format. Its values are hashes as well, with the language codes [:es, :en, :cz] as keys in [Symbol](https://ruby-doc.org/core-2.5.0/Symbol.html) format as well and the values of those keys are the expression itself in the objective language. The below lines can help to understand this.
 
-`@expressions[Hash]`<br>
-`:hello => { :en => ‘hello’, :es => ‘hola’, :cz => ‘ahoj’ }`<br>
-`:goodbye => { :en => ‘goodbye’, :es => ‘adios’, :cz => ‘nashledanou’ }`<br>
-`:my_name_is => { :en => ‘my name is’, :es => ‘mi nombre es’, :cz => ‘jmenuju se’ }`<br>
-`:i_come_from => { :en => ‘i come from’, :es => ‘yo vengo de’, :cz => ‘ja odchazim od’ }`
-
+```
+@expressions[Hash]
+:hello => { :en => ‘hello’, :es => ‘hola’, :cz => ‘ahoj’ }
+:goodbye => { :en => ‘goodbye’, :es => ‘adios’, :cz => ‘nashledanou’ }
+:my_name_is => { :en => ‘my name is’, :es => ‘mi nombre es’, :cz => ‘jmenuju se’ }
+:i_come_from => { :en => ‘i come from’, :es => ‘yo vengo de’, :cz => ‘ja odchazim od’ }
+```
 
 Then a [dynamic method](https://medium.com/@camfeg/dynamic-method-definition-with-rubys-define-method-b3ffbbee8197) will be created. This method will generate four different methods called `say_hello`, `say_goodbye`, `say_my_name_is` and `say_i_come_from`. These methods should respond to such calls as:
 
-`hello = game.dictionary.say_hello(language)`<br>
-`my_name_is = game.dictionary.say_my_name_is(language)`<br>
-`i_come_from = game.dictionary.say_i_come_from(language)`<br>
-
+```
+hello = game.dictionary.say_hello(language)
+my_name_is = game.dictionary.say_my_name_is(language)
+i_come_from = game.dictionary.say_i_come_from(language)
+```
 
 **2)** The `Poker` class will be implemented as you decide. It contains a fully accessible variable called `@deck` with all the classic cards in the format `:one_of_swords`, `:two_of_swords`. etc.
