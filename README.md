@@ -4,7 +4,7 @@
 
 Please read this document carefully.
 
-Welcome to the Third Practice Day of the RoR Apprenticeship. This document is intended to guide you about today's activities; the *do's* and *dont's* and how to get the best from them. Please ask in the *Slack* channel **#ror_apprenticeship** in case you have not cleared something or if you have any doubts.
+Welcome to the *Third Practice Day of the RoR Apprenticeship*. This document is intended to guide you about today's activities; the *do's* and *dont's* and how to get the best from them. Please ask in the *Slack* channel **_#ror_apprenticeship_** in case you have not cleared something or if you have any doubts.
 
 ## Setup
 
@@ -13,6 +13,21 @@ For Ruby installation you will be required to use your Mac’s Admin password, a
 > $ brew install ruby
 
 To set your [Github](https://github.com/) credentials; just sign up through the [Okta System](https://wizeline.okta.com/), when done, login in the same way again. Once you are positive you got Github valid credentials, check if you have not received the contributor's invitation to the [repository](https://github.com/wizelineacademy/ror-apprenticeship-q12022), ask your *Discipline Lead* if not. Once received, login, fork the repo, clone and work with the forked repository so you can push your files there. This is the repo’s [URL](https://github.com/wizelineacademy/ror-apprenticeship-q12022).
+
+## Mandatory Practice
+
+In this section, you will be required to accomplish the next tasks. Please push your files to the forked repository and then make a pull request into this one once finished.
+
+Activity 1) Read [this](http://ruby-for-beginners.rubymonstas.org/advanced/modules.html) document and learn about [Ruby Modules](https://ruby-doc.org/core-3.0.2/Module.html).
+
+Activity 2) Take some time to check the [RubyDocs](https://ruby-doc.org/) and keep them for reference. Check the latest version on the [CoreAPI](https://ruby-doc.org/) section. At the time of the publication of this document, it was [Version 3.0.2](https://ruby-doc.org/core-3.0.2/). Pay special attention to the [String](https://ruby-doc.org/core-3.0.2/String.html), [Array](https://ruby-doc.org/core-3.0.2/Array.html), [Hash](https://ruby-doc.org/core-3.0.2/Hash.html), [Enumerable](https://ruby-doc.org/core-3.0.2/Enumerable.html), [Class](https://ruby-doc.org/core-3.0.2/Class.html) and [Module](https://ruby-doc.org/core-3.0.2/Module.html) sections and check their methods out.
+
+Activity 3) On the branch folder create two Ruby files **_environment.rb_** and **_game.rb_**.
+
+Activity 4) On the _environment.rb_ file create a module named _Environment_ and then create on it three empty classes called _Depot_, _Control_ and _Human_. These classes and their methods will be described below, develop them according to those descriptions.
+
+The Depot class contains a [Hash](https://ruby-doc.org/core-3.0.2/Hash.html) called @packs which is fully accessible for other classes with the following data.
+
 
 ## The Challenge
 
