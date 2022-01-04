@@ -72,7 +72,7 @@ The Depot class contains a [Hash](https://ruby-doc.org/core-3.0.2/Hash.html) cal
 
 All references must be managed as Symbol type. This data must be accessible from the game.rb file with calls like:
 
-<table>
+<table width:100%>
   <tr>
     <td>game.depot.packs[:simple_transportation_pack]
     <br>game.depot.packs[:standard_mission_pack]
