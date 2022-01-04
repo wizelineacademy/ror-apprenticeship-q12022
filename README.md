@@ -4,7 +4,15 @@
 
 Please read this document carefully.
 
-Welcome to the Third Practice Day of the RoR Apprenticeship. This document is intended to guide you about today's activities; the do's and dont's and how to get the best from them. Please ask in #ror_apprenticeship in case you have not cleared something or if you have any doubts.
+Welcome to the Third Practice Day of the RoR Apprenticeship. This document is intended to guide you about today's activities; the *do's* and *dont's* and how to get the best from them. Please ask in the *Slack* channel **#ror_apprenticeship** in case you have not cleared something or if you have any doubts.
+
+## Setup
+
+For Ruby installation you will be required to use your Mac’s Admin password, ask your *Discipline Lead* in case you do not know it. You need to install [Homebrew](https://brew.sh/) as well if you have not done it yet. Then type in your terminal to install Ruby:
+
+> $ brew install ruby
+
+To set your [Github](https://github.com/) credentials; just sign up through the [Okta System](https://wizeline.okta.com/), when done, login in the same way again. Once you are positive you got Github valid credentials, check if you have not received the contributor's invitation to the [repository](https://github.com/wizelineacademy/ror-apprenticeship-q12022), ask your *Discipline Lead* if not. Once received, login, fork the repo, clone and work with the forked repository so you can push your files there. This is the repo’s [URL](https://github.com/wizelineacademy/ror-apprenticeship-q12022).
 
 ## The Challenge
 
