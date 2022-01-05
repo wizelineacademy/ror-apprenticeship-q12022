@@ -43,4 +43,30 @@ NOTE: You can install Ruby through [Homebrew](https://brew.sh/) as well if you h
 
 # Practice
 
-[ERROR HANDLING PRACTICE THEORY]
+As this day will be dedicated to handle errors, you will be required to add a new file named `error_test.rb` to the Day 3 [repository](https://github.com/wizelineacademy/ror-apprenticeship-q12022/tree/practice-day3), this file will work with the elements of the `Environment` class, we will set some of the methods we did in the last practice in the `Game.rb` file, but this time adding error handling.
+
+# File
+
+Create a new file in the same folder where the `Environment.rb` is; this file must contain a class named `ErrorTest` and require the `Environment` module, then initialize it as you did before adding the methods that you will use. Below there is a good example of the  `error_test.rb` file with a method using error handling. Add a couple of more methods by yourself.
+
+```
+require_relative 'environment.rb'
+
+class ErrorTest
+  include Environment
+  attr_accessor :board, :depot, :control, :dictionary, :poker
+
+  def initialize
+    @board = { players: Hash.new, control: Hash.new, status: nil }
+    @control = Environment::Control.new
+  end
+
+  def new_worker name: nil
+    begin
+      @board[:players].store name, Environment::Worker.new(name)
+    rescue NoMethodError
+      puts 'No name for worker given'
+    end
+  end
+end
+```
