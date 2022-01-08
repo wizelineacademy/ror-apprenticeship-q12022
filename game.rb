@@ -8,10 +8,6 @@ class Game
     @depot = Enviroment::Depot.new
     @control = Enviroment::Control.new
   end
-
-  def test
-    Enviroment::Depot.packs
-  end
 end
 
 game = Game.new
