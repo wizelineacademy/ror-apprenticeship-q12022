@@ -1,11 +1,12 @@
 require_relative 'enviroment'
 class Game
-  attr_accessor :depot
+  attr_accessor :depot, :control
 
   include Enviroment
 
   def initialize
     @depot = Enviroment::Depot.new
+    @control = Enviroment::Control.new
   end
 
   def test
@@ -15,4 +16,8 @@ end
 
 game = Game.new
 
-p game.depot.packs[:standard_transportation_pack]
+name = :alpha
+objective = 'Get Alpha to the base'
+pack = :simple_transportation_pack
+game.control.new_mission(name: name, objective: objective, pack: pack)
+p game.control.missions[:alpha]
