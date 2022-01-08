@@ -1,3 +1,4 @@
+require 'securerandom'
 module Enviroment
   class Depot
     attr_accessor :packs
@@ -32,6 +33,17 @@ module Enviroment
 
     def new_mission(name:, objective:, pack:)
       missions[name] = { objective: objective, status: :active, pack: pack }
+    end
+  end
+
+  class Human
+    attr_accessor :id, :name, :personal_data, :professional_data
+
+    def initialize(name:, personal_data:, professional_data:)
+      @id = SecureRandom.uuid
+      @name = name
+      @personal_data = personal_data
+      @professional_data = professional_data
     end
   end
 end
