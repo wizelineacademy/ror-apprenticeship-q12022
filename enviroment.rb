@@ -18,6 +18,14 @@ module Enviroment
   class Control
     attr_accessor :missions
 
+    states = %i[paused aborted accomplished failed]
+
+    states.each do |state|
+      define_method("set_mission_to_#{state}") do |mission_name|
+        missions[mission_name][:status] = state
+      end
+    end
+
     def initialize
       @missions = {}
     end
