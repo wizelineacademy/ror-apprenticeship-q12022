@@ -34,7 +34,4 @@ module Enviroment
       missions[name] = { objective: objective, status: :active, pack: pack }
     end
   end
-
-  class Human
-  end
 end
