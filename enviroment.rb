@@ -60,6 +60,7 @@ module Enviroment
     attr_accessor :standard_shift, :extra_shift
 
     def initialize(**args)
+      super(**args)
       @standard_shift = {
         id: id,
         hours: 8,
@@ -74,7 +75,6 @@ module Enviroment
         facility: nil,
         status: nil
       }
-      super(**args)
     end
   end
 end

@@ -19,7 +19,7 @@ RSpec.describe Enviroment do
       worker = Enviroment::Worker.new(name: 'Diego')
       worker.set_personal_data(surname: 'Mota', age: 40, marital_status: :single, children: 0, country: :mx,
                                language: :es)
-      expect(worker.personal_data[:surname]).eql? 'Mota'
+      expect(worker.personal_data[:surname]).to eq 'Mota'
     end
     it 'sets the worker professional data' do
       worker = Enviroment::Worker.new(name: 'Diego')
