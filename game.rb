@@ -22,3 +22,4 @@ game.control.new_mission(name: name, objective: objective, pack: pack)
 # p game.control.missions[:alpha]
 human = Enviroment::Human.new(name: 'test', personal_data: 'test', professional_data: 'test')
 p human
+human.set_personal_data(surname: 'test', age: 2, country: 'test', language: 'test', marital_status: 'single', children: 4)

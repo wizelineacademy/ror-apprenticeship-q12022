@@ -1,4 +1,5 @@
 require 'securerandom'
+
 module Enviroment
   class Depot
     attr_accessor :packs
@@ -38,6 +39,14 @@ module Enviroment
 
   class Human
     attr_accessor :id, :name, :personal_data, :professional_data
+
+    data_types = %i[personal professional]
+
+    data_types.each do |name|
+      define_method("set_#{name}_data") do |arg|
+        instance_variable_set("@#{name}_data", arg)
+      end
+    end
 
     def initialize(name:, personal_data:, professional_data:)
       @id = SecureRandom.uuid
