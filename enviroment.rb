@@ -1,3 +1,5 @@
+require 'securerandom'
+
 module Enviroment
   class Depot
     attr_accessor :packs
@@ -32,6 +34,47 @@ module Enviroment
 
     def new_mission(name:, objective:, pack:)
       missions[name] = { objective: objective, status: :active, pack: pack }
+    end
+  end
+
+  class Human
+    attr_accessor :id, :name, :personal_data, :professional_data
+
+    data_types = %i[personal professional]
+
+    data_types.each do |name|
+      define_method("set_#{name}_data") do |arg|
+        instance_variable_set("@#{name}_data", arg)
+      end
+    end
+
+    def initialize(name:, personal_data: nil, professional_data: nil)
+      @id = SecureRandom.uuid
+      @name = name
+      @personal_data = personal_data
+      @professional_data = professional_data
+    end
+  end
+
+  class Worker < Human
+    attr_accessor :standard_shift, :extra_shift
+
+    def initialize(**args)
+      @standard_shift = {
+        id: id,
+        hours: 8,
+        payment: 8,
+        facility: nil,
+        status: nil
+      }
+      @extra_shift = {
+        id: id,
+        hours: nil,
+        payment: nil,
+        facility: nil,
+        status: nil
+      }
+      super(**args)
     end
   end
 end
