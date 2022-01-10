@@ -5,14 +5,15 @@ class Game
   include Environment
 
   def initialize
-    @board = { playes: {}, control: {}, status: nil}
+    @board = { payers: {}, control: {}, status: nil}
     @depot = Environment::Depot.new
     @control = Environment::Control.new
   end
 
   def new_worker(name:)
-    worker = Environment::Worker.new
-    @board[:playes][name] = worker
+    worker = Environment::Worker.new(name:name, personal_data: nil,  professional_data: nil)
+    @board[:payers[name]] = worker
+    
   end
 
   def new_mission(name:, objective: , pack: )
@@ -41,5 +42,4 @@ game = Game.new
 #name = :alpha; objective = 'Get Alpha to the base'; pack = :simple_transportation_pack
 #game.new_mission name: name, objective: objective, pack: game.depot.packs[pack]
 #puts game.control.missions[:alpha]
-#game.control.set_mission_to_accomplished(:alpha)
-#puts game.control.missions[:alpha]
+#game.control.set_mission_to_accomplished(:alpha) and puts game.control.missions[:alpha]
