@@ -6,23 +6,23 @@ module Environment
     def initialize
       @packs = {
         simple_transportation_pack: {
-          intelligence: [:cellphone],
-          items: [:medipack, :chevy_versa]
+          intelligence: %i[cellphone],
+          items: %i[medipack chevy_versa]
         },
         standard_transportation_pack: {
-          intelligence: [:cellphone, :antenna],
+          intelligence: %i[cellphone antenna],
           arsenal: [:colt_1911],
-          items: [:handcuffs, :medipack, :chemistry, :chevy_versa]
+          items: %i[handcuffs medipack chemestry chevy_versa]
         },
         simple_mission_pack: {
-          intelligence: [:infopack, :laptop, :cellphone, :antenna],
+          intelligence: %i[infopack laptop cellphone antenna],
           arsenal: [:colt_1911],
-          items: [:handcuffs, :medipack, :chemistry, :financial]
+          items: %i[handcuffs medipack chemistry financial]
         },
         standard_mission_pack: {
-          intelligence: [:infopack, :laptop, :cellphone, :antenna],
-          arsenal: [:remington_870, :colt_1911, :machete, :hatchet],
-          items: [:handcuffs, :medipack, :chemistry, :financial]
+          intelligence: %i[infopack laptop cellphone antenna],
+          arsenal: %i[remington_870 colt_1911 machete hatchet],
+          items: %i[handcuffs medipack chemistry financial]
         }
       }
     end
@@ -31,14 +31,14 @@ module Environment
 
   class Control
     attr_accessor :missions
-    @@states = [:paused, :aborted, :failed, :accomplished]
+    states = [:paused, :aborted, :failed, :accomplished]
 
     def initialize
       @missions = Hash.new
     end
 
-    def new_mission(name, objective, pack)
-      missions[name] = {
+    def new_mission(name:, objective:, pack:)
+      @missions[name] = {
         objective: objective,
         status: :active,
         pack: pack
@@ -46,19 +46,19 @@ module Environment
     end
 
     #metapograming
-    @@states.each do |state|
+    states.each do |state|
       define_method("set_mission_to_#{state}") do |name|
-        missions[name][:status] = state
+        @missions[name][:status] = state
       end
     end
 
   end
 
   class Human
-    attr_accessor :id, :personal_data, :professional_data
+    attr_accessor :id, :name, :personal_data, :professional_data
     @@types = [:personal, :professional]
 
-    def initialize(name, personal_data, professional_data)
+    def initialize(name:, personal_data:, professional_data:)
       @id = object_id
       @name = name
       @personal_data = personal_data
@@ -77,8 +77,8 @@ module Environment
   class Worker < Human
     attr_accessor :standard_shift, :extra_shift
 
-    def initialize(name, personal_data, professional_data)
-      super(name, personal_data, professional_data)
+    def initialize(name:, personal_data:, professional_data:)
+      super(name: name, personal_data: personal_data, professional_data: professional_data)
 
       @standard_shift = {
         id: id,
