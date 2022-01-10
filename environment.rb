@@ -57,6 +57,7 @@ module Environment
     types.each do |type|
       define_method("set_#{type}_data") do |args|
         instance_variable_set("@#{type}_data", args)
+        p args
       end
     end
     
@@ -72,13 +73,11 @@ module Environment
   class Worker < Human
     attr_accessor :standard_shift, :extra_shift
 
-    def initialize(name: , personal_data:, professional_data:)
+    def initialize
       id = sprintf("%20.10f", Time.now.to_f).delete('.').to_i.to_s(36)
       
-      super(name: name, personal_data: personal_data, professional_data: professional_data)
-
       @standard_shift = {
-        id: @id, 
+        id: id, 
         hours: 8,
         payment: 8, 
         facility: String.new,
