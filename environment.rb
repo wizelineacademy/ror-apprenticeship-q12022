@@ -1,6 +1,6 @@
 require 'securerandom' #Gem to generate ids
 
-module Enviroment
+module Environment
   class Depot
       attr_accessor :packs
 
@@ -44,7 +44,7 @@ module Enviroment
         @missions = {}
       end
       
-      def new_mission :name, :objective, :pack
+      def new_mission(name:, objective:, pack:)
           @missions[name] = {objective: objective, status: :active, pack: pack}
       end
   end
@@ -60,7 +60,7 @@ module Enviroment
       end
     end
 
-    def initialize :name, :personal_data, :professional_data
+    def initialize (name:, personal_data:, professional_data:)
       @id = SecureRandom.uuid
       @name = name
       @personal_data = personal_data
@@ -71,9 +71,8 @@ module Enviroment
   class Worker < Human
     attr_accessor :standard_shift, :extra_shift
 
-    def initialize :id :name, :personal_data, :professional_data
+    def initialize(name:, personal_data:, professional_data:)
       super(
-        id: id,
         name: name,
         personal_data: personal_data,
         professional_data: professional_data
@@ -89,9 +88,9 @@ module Enviroment
 
       @extra_shift = {
         id: @id, 
-        hours: Integer.new,
-        payment: Float.new, 
-        facility: String.new, 
+        hours: 0,
+        payment: 0.0, 
+        facility: nil, 
         status: nil
       }
     end
