@@ -15,7 +15,7 @@ class ErrorTest
 
   def new_worker(name: nil)
     begin
-      @board[:players][name.to_sym] = Environment::Worker.new(name)
+      @board[:players][name.to_sym] = Environment::Worker.new(name: name)
       p @board
     rescue NoMethodError
       puts "No name for worker given"
