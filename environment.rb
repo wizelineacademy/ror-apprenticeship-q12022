@@ -23,10 +23,8 @@ module Environment
           intelligence: %i[infopack laptop cellphone antenna],
           arsenal: %i[remington_870 colt_1911 machete hatchet],
           items: %i[handcuffs medipack chemistry financial]
-        }
-      }
+        }}
     end
-
   end
 
   class Control
@@ -34,7 +32,7 @@ module Environment
     states = [:paused, :aborted, :failed, :accomplished]
 
     def initialize
-      @missions = Hash.new
+      @missions = {}
     end
 
     def new_mission(name:, objective:, pack:)
@@ -51,7 +49,6 @@ module Environment
         @missions[name][:status] = state
       end
     end
-
   end
 
   class Human
@@ -71,7 +68,6 @@ module Environment
         instance_variable_set("@#{type}_data", args)
       end
     end
-
   end
 
   class Worker < Human
@@ -96,7 +92,5 @@ module Environment
         status: nil
       }
     end
-
   end
-
 end

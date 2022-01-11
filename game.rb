@@ -22,7 +22,6 @@ class Game
   def new_mission(name:, objective:, pack:)
     @control.new_mission(name: name, objective: objective, pack:pack)
   end
-
 end
 
 #Testing
