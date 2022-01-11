@@ -14,34 +14,38 @@ class ErrorTest
   end
 
   def new_worker(name: nil)
-    @board[:players][name] = Environment::Worker.new(name: name)
-  rescue ArgumentError => e
-    puts "#{$ERROR_INFO.class}: #{$ERROR_INFO.message}"
+    begin
+      @board[:players][name] = Environment::Worker.new(name: name)
+    rescue ArgumentError => e
+      puts "#{$ERROR_INFO.class}: #{$ERROR_INFO.message}"
+    end
   end
 
   def new_worker_flexible(name: nil, personal_data: nil, professional_data: nil)
-    @board[:players][name] =
-      Environment::Worker.new(name: name, personal_data: personal_data, professional_data: professional_data)
-  rescue ArgumentError => e
-    p "#{$ERROR_INFO.class}: #{$ERROR_INFO.message}"
-  ensure
-    p 'Ensure block at new_worker_flexible'
-    if name.nil? && !personal_data.nil? && !professional_data.nil?
-      @board[:players]['No name given'] =
-        Environment::Worker.new(name: 'No name given', personal_data: personal_data,
-                                professional_data: professional_data)
-
-    elsif !name.nil? && personal_data.nil? && !professional_data.nil?
+    begin
       @board[:players][name] =
-        Environment::Worker.new(name: 'No name given', personal_data: 'No personal data given',
-                                professional_data: professional_data)
+        Environment::Worker.new(name: name, personal_data: personal_data, professional_data: professional_data)
+    rescue ArgumentError => e
+      p "#{$ERROR_INFO.class}: #{$ERROR_INFO.message}"
+    ensure
+      p 'Ensure block at new_worker_flexible'
+      if name.nil? && !personal_data.nil? && !professional_data.nil?
+        @board[:players]['No name given'] =
+          Environment::Worker.new(name: 'No name given', personal_data: personal_data,
+                                  professional_data: professional_data)
 
-    elsif !name.nil? && !personal_data.nil? && professional_data.nil?
-      @board[:players][name] =
-        Environment::Worker.new(name: 'No name given', personal_data: personal_data,
-                                professional_data: 'No professional data given')
+      elsif !name.nil? && personal_data.nil? && !professional_data.nil?
+        @board[:players][name] =
+          Environment::Worker.new(name: name, personal_data: 'No personal data given',
+                                  professional_data: professional_data)
+
+      elsif !name.nil? && !personal_data.nil? && professional_data.nil?
+        @board[:players][name] =
+          Environment::Worker.new(name: name, personal_data: personal_data,
+                                  professional_data: 'No professional data given')
+      end
+      puts 'No info given' if !name.nil? && !personal_data.nil? && !professional_data.nil?
     end
-    puts 'No info given' if !name.nil? && !personal_data.nil? && !professional_data.nil?
   end
 
   def new_mission(name: nil, objective: nil, pack: nil)
@@ -74,5 +78,5 @@ end
 
 # errorEnv = ErrorTest.new
 # newWorker2 = errorEnv.new_worker
-# newWorker = errorEnv.new_worker_flexible(name: 'Hector', professional_data: 'He likes to work')
+# newWorker = errorEnv.new_worker_flexible(personal_data: 'He likes to work', professional_data: 'He likes to work')
 # errorEnv.new_mission(name: nil, objective: nil, pack: nil)
