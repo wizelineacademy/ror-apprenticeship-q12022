@@ -30,13 +30,13 @@ class ErrorTest
       @board[:players]['No name given'] =
         Environment::Worker.new(name: 'No name given', personal_data: personal_data,
                                 professional_data: professional_data)
-    end
-    if !name.nil? && personal_data.nil? && !professional_data.nil?
+
+    elsif !name.nil? && personal_data.nil? && !professional_data.nil?
       @board[:players][name] =
         Environment::Worker.new(name: 'No name given', personal_data: 'No personal data given',
                                 professional_data: professional_data)
-    end
-    if !name.nil? && !personal_data.nil? && professional_data.nil?
+
+    elsif !name.nil? && !personal_data.nil? && professional_data.nil?
       @board[:players][name] =
         Environment::Worker.new(name: 'No name given', personal_data: personal_data,
                                 professional_data: 'No professional data given')
