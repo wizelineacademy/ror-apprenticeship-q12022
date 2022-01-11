@@ -11,13 +11,9 @@ class Archiver
 
   @@modes.each do |mode|
     define_method("open_file_as_#{mode}") do |file|
-      if mode == :reader
-        @file = File.open(file, "r")
-      elsif mode == :writer
-        @file = File.open(file, "w")
-      else
-        @file = File.open(file, "r+")
-      end
+        @file = File.open(file, "r") if mode == :reader
+        @file = File.open(file, "w") if mode == :writer
+        @file = File.open(file, "r+") if mode == :both
       end
     end
 
@@ -30,7 +26,7 @@ class Archiver
     end
 end
 
-  archiver = Archiver.new
-  archiver.open_file_as_both "lines.txt"
-  #archiver.write_file data: "line 4", append: true
-  #p archiver.read_file
+#archiver = Archiver.new
+#archiver.open_file_as_both "lines.txt"
+#archiver.write_file data: "line 4", append: true
+#p archiver.read_file
