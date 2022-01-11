@@ -31,7 +31,8 @@ module Environment
 
   class Control
     attr_accessor :missions
-    states = [:paused, :aborted, :failed, :accomplished]
+
+    states = %i[paused aborted failed accomplished]
 
     def initialize
       @missions = {}
