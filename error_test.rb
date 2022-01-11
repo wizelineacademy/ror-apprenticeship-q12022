@@ -1,13 +1,6 @@
 # frozen_string_literal: true
 
 require 'English'
-require 'English'
-require 'English'
-require 'English'
-require 'English'
-require 'English'
-require 'English'
-require 'English'
 require_relative 'environment'
 
 class ErrorTest
