@@ -1,9 +1,5 @@
 # frozen_string_literal: true
 
-require 'tempfile'
-require 'fileutils'
-require 'find'
-
 class Archiver
   attr_accessor :file
 
@@ -28,7 +24,8 @@ class Archiver
   end
 end
 
-#archiver = Archiver.new
-#archiver.open_file_as_both 'lines.txt'
-#archiver.write_file data: 'line 4', append: true
-#p archiver.read_file
+# archiver = Archiver.new
+# archiver.open_file_as_both 'lines.txt'
+# archiver.write_file data: 'line 4', append: true
+# p archiver.read_file
+# archiver.file.close
