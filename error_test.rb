@@ -85,5 +85,5 @@ end
 
 # errorEnv = ErrorTest.new
 # newWorker2 = errorEnv.new_worker
-# newWorker = errorEnv.new_worker_flexible(name: "Hector", professional_data: "He likes to work")
+# newWorker = errorEnv.new_worker_flexible(name: 'Hector', professional_data: 'He likes to work')
 # errorEnv.new_mission(name: nil, objective: nil, pack: nil)
