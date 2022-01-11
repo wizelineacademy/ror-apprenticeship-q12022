@@ -28,6 +28,23 @@ module Enviroment
   end
 
   class Control
+      attr_accessor :missions
+
+      states = %i[paused aborted accomplished failed]
+
+      states.each do |state|
+        define_method("set_mission_to_#{state}") do |mission|
+          @missions[mission][:status] = state
+        end
+      end
+
+      def initialize
+        @missions = {}
+      end
+      
+      def new_mission :name, :objective, :pack
+          @missions[name] = {objective: objective, status: :active, pack: pack}
+      end
   end
 
   class Human
