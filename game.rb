@@ -1,18 +1,28 @@
 require_relative 'environment'
 
 class Game
-  attr_accessor :depot, :control
+  attr_accessor :depot, :control, :board
   include Environment
 
   def initialize
+    @board = { 
+      players: {},
+      control: {},
+      status: nil
+    }
     @depot = Environment::Depot.new
     @control = Environment::Control.new
-    @human = Environment::Human.new
-    @worker = Environment::Worker.new
   end
 
+  def new_worker(name: name)
+    @board[name] = Environment::Worker.new(name)
+  end
+  
   def new_mission(params)
     @control.new_mission(params)
+    @board[:control] = {
+      missions: @control.missions
+    }
   end 
 end 
 
@@ -36,3 +46,10 @@ puts game.control.missions[:alpha]
 game.control.set_mission_to_accomplished(:alpha)
 puts "----Testing set_mission_to_accomplished----"
 puts game.control.missions[:alpha]
+
+# Testing new_worker and set_data
+diego = game.new_worker name: 'Diego'
+diego.set_personal_data surname: 'Mota', age: 40, marital_status: :single, children: 0, country: :mx, language: :es
+diego.set_professional_data position: 'SE', occupation: 'IT', skills: [:ruby, :blender], observations: 'none'
+puts "----Testing new_worker----"
+puts "#{diego.name}, #{diego.class}", diego.personal_data, diego.professional_data

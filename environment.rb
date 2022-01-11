@@ -69,7 +69,8 @@ module Environment
   class Worker < Human
     attr_accessor :standard_shift, :extra_shift
     
-    def initialize
+    def initialize(name)
+      super
       @standard_shift = { 
         :id => @id,
         :hours => 8,
@@ -79,8 +80,8 @@ module Environment
       }
       @extra_shift = { 
         :id => id,
-        :hours => Integer.new,
-        :payment => Float.new,
+        :hours => Integer,
+        :payment => Float,
         :facility => String.new,
         :status => nil
       }
