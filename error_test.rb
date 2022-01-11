@@ -15,11 +15,7 @@ class ErrorTest
   attr_accessor :board, :depot, :control, :dictionary, :poker
 
   def initialize
-    @board = {
-      players: {},
-      control: {},
-      status: nil
-    }
+    @board = { players: {}, control: {}, status: nil }
     @control = Environment::Control.new
     @depot = Environment::Depot.new
   end
