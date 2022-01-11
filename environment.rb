@@ -77,7 +77,7 @@ module Environment
   class Worker < Human
     attr_accessor :standard_shift, :extra_shift
 
-    def initialize(name:, personal_data:, professional_data:)
+    def initialize(name: nil, personal_data: nil, professional_data: nil)
       super(name: name, personal_data: personal_data, professional_data: professional_data)
 
       @standard_shift = {
