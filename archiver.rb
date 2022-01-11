@@ -5,8 +5,6 @@ class Archiver
 
   @@modes = %i[reader writer both]
 
-  def initialize; end
-
   @@modes.each do |mode|
     define_method("open_file_as_#{mode}") do |file|
       @file = File.open(file, 'r') if mode == :reader
