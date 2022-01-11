@@ -34,7 +34,7 @@ module Environment
       @missions = {}
     end
     
-    def new_mission(name: name, objective: objective, pack: pack)
+    def new_mission name: name, objective: objective, pack: pack
       @missions[name] = { 
         objective: objective, 
         pack: pack, 
@@ -53,7 +53,7 @@ module Environment
   class Human
     attr_accessor :id, :name, :personal_data, :professional_data
 
-    def initialize(name)
+    def initialize name
       @id = object_id
       @name = name
     end
@@ -69,7 +69,7 @@ module Environment
   class Worker < Human
     attr_accessor :standard_shift, :extra_shift
     
-    def initialize(name)
+    def initialize name
       super
       @standard_shift = { 
         :id => @id,
