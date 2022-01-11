@@ -24,4 +24,4 @@ class ErrorTest
 end
 
 errorEnv = ErrorTest.new
-newWorker = errorEnv.new_worker(name: "Hector")
+newWorker = errorEnv.new_worker
