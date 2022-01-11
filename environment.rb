@@ -1,5 +1,6 @@
-module Environment
+# frozen_string_literal: true
 
+module Environment
   class Depot
     attr_accessor :packs
 
@@ -23,13 +24,15 @@ module Environment
           intelligence: %i[infopack laptop cellphone antenna],
           arsenal: %i[remington_870 colt_1911 machete hatchet],
           items: %i[handcuffs medipack chemistry financial]
-        }}
+        }
+      }
     end
   end
 
   class Control
     attr_accessor :missions
-    states = [:paused, :aborted, :failed, :accomplished]
+
+    states = %i[paused aborted failed accomplished]
 
     def initialize
       @missions = {}
@@ -43,7 +46,7 @@ module Environment
       }
     end
 
-    #metapograming
+    # metapograming
     states.each do |state|
       define_method("set_mission_to_#{state}") do |name|
         @missions[name][:status] = state
@@ -53,7 +56,8 @@ module Environment
 
   class Human
     attr_accessor :id, :name, :personal_data, :professional_data
-    @@types = [:personal, :professional]
+
+    @types = %i[personal professional]
 
     def initialize(name:, personal_data:, professional_data:)
       @id = object_id
@@ -62,8 +66,8 @@ module Environment
       @professional_data = professional_data
     end
 
-    #metapograming
-    @@types.each do |type|
+    # metapograming
+    @types.each do |type|
       define_method("set_#{type}_data") do |args|
         instance_variable_set("@#{type}_data", args)
       end
