@@ -1,5 +1,6 @@
-module Environment
+# frozen_string_literal: true
 
+module Environment
   class Depot
     attr_accessor :packs
 
@@ -26,7 +27,6 @@ module Environment
         }
       }
     end
-
   end
 
   class Control
@@ -34,7 +34,7 @@ module Environment
     states = [:paused, :aborted, :failed, :accomplished]
 
     def initialize
-      @missions = Hash.new
+      @missions = {}
     end
 
     def new_mission(name:, objective:, pack:)
@@ -45,18 +45,18 @@ module Environment
       }
     end
 
-    #metapograming
+    # metapograming
     states.each do |state|
       define_method("set_mission_to_#{state}") do |name|
         @missions[name][:status] = state
       end
     end
-
   end
 
   class Human
     attr_accessor :id, :name, :personal_data, :professional_data
-    @@types = [:personal, :professional]
+
+    @@types = %i[personal professional]
 
     def initialize(name:, personal_data:, professional_data:)
       @id = object_id
@@ -65,13 +65,12 @@ module Environment
       @professional_data = professional_data
     end
 
-    #metapograming
+    # metapograming
     @@types.each do |type|
       define_method("set_#{type}_data") do |args|
         instance_variable_set("@#{type}_data", args)
       end
     end
-
   end
 
   class Worker < Human
@@ -96,7 +95,5 @@ module Environment
         status: nil
       }
     end
-
   end
-
 end
