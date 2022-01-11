@@ -13,7 +13,7 @@ class ErrorTest
     @control = Environment::Control.new
   end
 
-  def new_worker(name:)
+  def new_worker(name: nil)
     begin
       @board[:players][name.to_sym] = Environment::Worker.new(name)
       p @board
