@@ -14,7 +14,7 @@ class Game
     end
 
     def new_worker(name:)
-        @board[:players].store(name, Environment::Worker.new(name: name))
+        @board[:players].store(name, Environment::Worker.new(name))
     end
 
     def new_mission(name:, objective:, pack:)

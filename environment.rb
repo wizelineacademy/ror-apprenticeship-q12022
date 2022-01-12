@@ -53,7 +53,7 @@ module Environment
     class Human
         attr_accessor :id, :name, :personal_data, :professional_data 
 
-        def initialize(name:)
+        def initialize(name)
             @id = rand(0...3000)
             @name = name
             @personal_data = {}
@@ -72,8 +72,7 @@ module Environment
     class Worker < Human
         attr_accessor :standard_shift, :extra_shift
 
-        def initialize(name:)
-            super(name: name)
+        def initialize_shifts 
             @standard_shift = {
                 id: rand(0..3000),
                 hours: 8,
