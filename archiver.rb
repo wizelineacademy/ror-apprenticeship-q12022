@@ -35,7 +35,7 @@ class Archiver
   
   def counting_words
     lines = read_file
-    arr = []
+
     lines.each do |line|
         words = line.split(' ')
         letters = words.map { |word| word.length }.inject(:+)
