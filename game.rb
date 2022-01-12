@@ -5,21 +5,21 @@ class Game
 
     def initialize        
         @board = {
-            :players => {}, 
-            :control => {}, 
-            :status => nil
+            players: {}, 
+            control: {}, 
+            status: nil
         }
         @depot = Environment::Depot.new
         @control = Environment::Control.new
     end
 
 
-	def new_worker(name:)
+	def new_worker name: nil
         worker = Environment::Human::Worker.new(name)
         @board[:players][name] = worker
 	end
 
-	def new_mission(name:, objective:, pack:)
+	def new_mission name:, objective:, pack:
 		@control.new_mission(name: name, objective: objective, pack: pack)
         @board[:control][:missions] = @control.missions
 	end
