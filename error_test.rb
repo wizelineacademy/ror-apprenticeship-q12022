@@ -20,8 +20,6 @@ class ErrorTest
     def set_worker_data name, type, data
         begin
             @board[:players][name].send("set_#{type}_data", data)
-        rescue ArgumentError
-            puts 'Incorrect number of arguments'
         rescue NoMethodError
             puts 'Worker or type of data not found'
         end
@@ -47,4 +45,9 @@ e.set_worker_data :ana, "personal", {surname: 'Porras', age: 27}
 p ana
 ana.initialize_shifts
 p ana
+begin
+  e.estimate_payment_extra_hours
+rescue ArgumentError
+  puts 'Wrong number of arguments'
+end
 e.estimate_payment_extra_hours :Ana, "9"
