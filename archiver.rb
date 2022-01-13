@@ -25,6 +25,10 @@ class Archiver
   def close 
     @file.close
   end
+  
+  def reset_cursor
+    @file.seek(0)
+  end
 end
 
 
@@ -42,8 +46,6 @@ file.open_file_as_both("info.txt")
 file.write_file(data: "Hi, my name John", append: false)
 p file.read_file(lines: true)
 file.write_file(data: "\nHola, soy Jossy")
-file.close
-
-file.open_file_as_reader("info.txt")
+file.reset_cursor
 puts file.read_file(lines: true)
 file.close
