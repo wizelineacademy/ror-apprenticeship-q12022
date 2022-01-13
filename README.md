@@ -1,4 +1,4 @@
-# RoR Apprenticeship Day 3
+# RoR Apprenticeship Day 3 
 
 ## Introduction
 
