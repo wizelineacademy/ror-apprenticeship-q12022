@@ -115,6 +115,13 @@ rvm implode && sudo rm -rf ~/.rvm
 rm -rf ~/.rbenv
 ```
 
+### MacOS users just do:
+
+```
+brew install rbenv
+```
+
+### Linux users:
 Then in the terminal, run:
 
 ```bash
