@@ -10,7 +10,6 @@ class Game
   def initialize
     @depot = Environment::Depot.new
     @control = Environment::Control.new
-    @human = Environment::Human.new
     @board = { players: {}, control: {}, status: nil }
   end
 
@@ -50,7 +49,7 @@ p '---------------------------------------------------------'
 name = :alpha
 objective = 'Get Alpha to the base'
 pack = :simple_transportation_pack
-game.new_mission name: name, objective: objective, pack: game.depot.packs[pack]
+game.control.new_mission name: name, objective: objective, pack: game.depot.packs[pack]
 puts game.control.missions[:alpha]
 game.control.set_mission_to_accomplished(:alpha)
 puts game.control.missions[:alpha]

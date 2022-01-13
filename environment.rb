@@ -58,16 +58,18 @@ module Environment
   class Worker < Human
     attr_accessor :standard_shift, :extra_shift
 
-    def initialize(name: , personal_data:, professional_data:)
-      @standard_shift = { id: id.object_id,
+    @@id_count = 1
+
+    def initialize(name:, personal_data:, professional_data:)
+      @standard_shift = { id: @@id_count,
                           hours: 8,
                           payment: 8,
                           facility: String.new,
                           status: nil }
 
-      @extra_shift = { id: id.object_id,
-                       hours: Integer.new,
-                       payment: Float.new,
+      @extra_shift = { id: @@id_count,
+                       hours: 1,
+                       payment: 1.0,
                        facility: String.new,
                        status: nil }
     end
