@@ -37,11 +37,7 @@ module Environment
     end
 
     def new_mission(name:, objective:, pack:)
-      @missions[name] = {
-        objective: objective,
-        pack: pack,
-        status: :active
-      }
+      @missions[name] = { objective: objective, pack: pack, status: :active }
     end
 
     statuses = %w[paused aborted failed accomplished]
@@ -73,13 +69,7 @@ module Environment
 
     def initialize(name:)
       super name
-      @standard_shift = {
-        id: @id,
-        hours: 8,
-        payment: 8,
-        facility: String.new,
-        status: nil
-      }
+      @standard_shift = { id: @id, hours: 8, payment: 8, facility: String.new, status: nil }
       @extra_shift = {
         id: id,
         hours: Integer,

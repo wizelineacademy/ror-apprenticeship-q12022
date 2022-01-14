@@ -12,9 +12,10 @@ class ErrorTest
   end
 
   def new_worker(name: nil)
-    @board[:players].store name, Environment::Worker.new(name)
-  rescue ArgumentError
-    puts 'No name for worker given'
+    begin
+      @board[:players].store name, Environment::Worker.new(name)
+    rescue ArgumentError
+      puts 'No name for worker given'
   end
 
   def new_mission(**args)
