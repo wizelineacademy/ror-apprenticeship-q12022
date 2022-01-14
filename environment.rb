@@ -27,11 +27,12 @@ module Environment
   end
 
   class Control
-    mission_status = [:paused, :aborted, :failed, :accomplished]
+    mission_status = %i[paused aborted failed accomplished]
     attr_accessor :missions
     def initialize
       @missions = {}
     end
+
     mission_status.each do |status|
       define_method("set_mission_to_#{status}") do |arg|
         @missions[arg][:status] = status
@@ -48,7 +49,7 @@ module Environment
       @id = self.object_id
       @name = name
     end
-    data_types = [:personal, :professional]
+    data_types = %i[personal professional]
     data_types.each do |type|
       define_method("set_#{type}_data") do |arg|
         if type == :personal
@@ -69,13 +70,19 @@ module Environment
   class Worker < Human
     attr_accessor :standard_shift, :extra_shift
     def set_shift
-      @standard_shift ={
-        id: self.object_id, hours: 8,payment: 8,
-        facility: String.new, status:nil
+      @standard_shift = {
+        id: self.object_id,
+        hours: 8,
+        payment: 8,
+        facility: String.new,
+        status: nil
       }
       @extra_shift ={
-        id: self.object_id, hours: 0,payment: 0.0,
-        facility: String.new, status:nil
+        id: self.object_id,
+        hours: 0,
+        payment: 0.0,
+        facility: String.new,
+        status:nil
       }
     end
   end

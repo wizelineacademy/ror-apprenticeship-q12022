@@ -12,9 +12,9 @@ class  Game
     @board[:players][name.to_sym] = Environment::Worker.new(name)
   end
 
-  def  new_mission(name: nil, objective: nil, pack: nil)
+  def new_mission(name: nil, objective: nil, pack: nil)
     @control.new_mission(name: name, objective: objective, pack: pack)
-		@board[:control][:missions] =  @control.missions
+    @board[:control][:missions] =  @control.missions
   end
 end
 
