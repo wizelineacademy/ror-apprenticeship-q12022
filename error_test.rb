@@ -43,3 +43,4 @@ test.new_mission  objective: objective, pack: test.depot.packs[pack]
 #trying to acces a fake method
 test.set_holiday({worker: test_worker,surname: 'Mota', "age": 40, marital_status: :single,
    children: 0, country: :mx, language: :es })
+
