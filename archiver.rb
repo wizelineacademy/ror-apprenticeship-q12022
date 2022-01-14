@@ -1,10 +1,8 @@
 class Archiver
   attr_accessor :file
-  @@modes = [:read, :write, :read_write]
-
   def initialize
   end
-
+@@modes = [:read, :write, :read_write]
   @@modes.each do |mode|
     define_method("open_file_as_#{mode}") do |file|
       case mode
@@ -18,7 +16,7 @@ class Archiver
     end
   end
 
-  #whole file, line by line
+  #whole file or  line by line
   def read byLines: false
     if byLines
       data = @file&.read
@@ -26,7 +24,6 @@ class Archiver
       data = file&.readlines.map(&:chomp)
     end
   end
-
 
   def write text: nil, append: false
     if append
