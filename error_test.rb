@@ -45,4 +45,3 @@ end
 test = ErrorTest.new
 test.new_worker
 test.new_mission(name: :alpha, objective: 'skds', pack: "sdjsk")
-test.set_mission_to_aborted
