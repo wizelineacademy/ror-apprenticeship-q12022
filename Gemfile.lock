@@ -1,3 +1,13 @@
+GIT
+  remote: https://github.com/rweng/jquery-datatables-rails.git
+  revision: d486b31b192a2924b1913e080ad23460e6b96d31
+  specs:
+    jquery-datatables-rails (3.4.0)
+      actionpack (>= 3.1)
+      jquery-rails
+      railties (>= 3.1)
+      sass-rails
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -193,6 +203,8 @@ GEM
       io-console (~> 0.5)
     rexml (3.2.5)
     rubyzip (2.3.2)
+    sass-rails (6.0.0)
+      sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.4.0)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
@@ -255,6 +267,7 @@ DEPENDENCIES
   httparty (~> 0.20.0)
   importmap-rails
   jbuilder
+  jquery-datatables-rails (~> 3.4.0)!
   jquery-rails
   pg (~> 1.1)
   puma (~> 5.0)

@@ -32,6 +32,7 @@ gem 'httparty', '~> 0.20.0'
 
 #-----------JAVASCRIPT GEMS---------#
 gem 'jquery-rails'
+gem 'jquery-datatables-rails', '~> 3.4.0' , github: 'rweng/jquery-datatables-rails' # correr rails generate jquery:datatables:install bootstrap3 , rails generate jquery:datatables:install responsive
 #-----------JAVASCRIPT GEMS---------#
 
 #-----------STYLES GEMS-------------#
