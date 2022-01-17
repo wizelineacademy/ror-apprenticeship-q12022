@@ -13,7 +13,7 @@ class ErrorTest
   end
 
   def error_logger(e)
-    File.open("error_logger.txt", "a") do |file|
+    File.open('error_logger.txt', 'a') do |file|
       file.puts e
     end
   end
@@ -28,15 +28,15 @@ class ErrorTest
     if name.nil? || name.empty? || objective.nil? || objective.empty? || pack.nil? || pack.empty?
       raise StandardError, 'you can not have empty or nil fields'
     end
+
     @control.new_mission(name: name, objective: objective, pack: pack)
   rescue StandardError => e
     error_logger("Error : #{e}. Error catched at #{Time.now}")
   end
 
   def get_missions(name: nil)
-    if name.nil? || name.empty?
-      raise StandardError, 'you can not have empty or nil fields'
-    end
+    raise StandardError, 'you can not have empty or nil fields' if name.nil? || name.empty?
+
     control.missions[name]
   rescue StandardError => e
     error_logger("Error : #{e}. Error catched at #{Time.now}")
