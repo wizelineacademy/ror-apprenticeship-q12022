@@ -1,49 +1,41 @@
-require_relative './environment.rb'
+# frozen_string_literal: true
+
+require_relative './environment'
 
 class ErrorTest
-	include Environment 
-	attr_accessor :board, :depot, :control 
-  
-	def initialize
-		@board = { 
-			players: {},
-			control: {},
-			status: nil 
-		}
-		@depot = Environment::Depot.new
-    	@control = Environment::Control.new
-	end
-	
-	def new_worker name: nil
-		begin
-      raise NameError, 'Name cannot be empty' if name.nil?
-		
-			@board[:players].store name, Environment::Human::Worker.new(name)
-		rescue NameError => e
-			puts "Error: #{e}"
-		end
-	end
+  include Environment
+  attr_accessor :board, :depot, :control
 
-	
+  def initialize
+    @board = {players: {}, control: {}, status: nil}
+    @depot = Environment::Depot.new
+    @control = Environment::Control.new
+  end
 
-	def new_mission name: nil, objective: nil, pack: nil
-		begin
-      raise NameError, 'name cannot be empty'     if name.nil?
-			raise NameError, 'Objetive cannot be empty' if objective.nil?
-			raise NameError, 'Pack cannot be empty'     if pack.nil?
-			
-			@control.new_mission(name: name, objective: objective, pack: pack)
-			@board[:control][:missions] = @control.missions
-		rescue NameError => e
-		puts "Error: #{e}"
-	end
-	end
+  def new_worker(name: nil)
+    raise NameError, 'Name cannot be empty' if name.nil?
+
+    @board[:players].store name, Environment::Human::Worker.new(name)
+  rescue NameError => e
+    puts "Error: #{e}"
+  end
+
+  def new_mission(name: nil, objective: nil, pack: nil)
+    raise NameError, 'name cannot be empty' if name.nil?
+    raise NameError, 'Objetive cannot be empty' if objective.nil?
+    raise NameError, 'Pack cannot be empty'     if pack.nil?
+
+    @control.new_mission(name: name, objective: objective, pack: pack)
+    @board[:control][:missions] = @control.missions
+  rescue NameError => e
+    puts "Error: #{e}"
+  end
 end
 
 error_test = ErrorTest.new
 player = error_test.new_worker
 
-player2 = error_test.new_mission name: "Fer", objective: "Conquer the zone"
+player2 = error_test.new_mission name: 'Fer', objective: 'Conquer the zone'
 
 # player1 = error_test.new_worker name: 'Diego'
 # diego.set_personal_data(surname: 'Mota', age: 40, marital_status: :single, children: 0, country: :mx, language: :es)
