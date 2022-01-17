@@ -30,9 +30,19 @@ gem "jbuilder"
 #Gem to make APIs calls
 gem 'httparty', '~> 0.20.0'
 
-#-----------styles gems-------------#
+#-----------JAVASCRIPT GEMS---------#
+gem 'jquery-rails'
+#-----------JAVASCRIPT GEMS---------#
 
-
+#-----------STYLES GEMS-------------#
+#gems to import bootstrap
+gem 'bootstrap-sass', '~> 3.4.1'
+gem 'sassc-rails', '>= 2.1.0'
+#Turbolinks makes following links in your application faster, Read more: https://github.com/rails/turbolinks
+gem 'turbolinks'
+#Gem to use font awesome
+gem "font-awesome-rails"
+#---------END STYLES GEMS-------------#
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
