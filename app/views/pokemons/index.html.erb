@@ -1,0 +1,29 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Pokemons</h1>
+
+<%= link_to "New pokemon", new_pokemon_path %>
+
+<table id="pokemon_table" class="table table-striped table-bordered table-hover">
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Image</th>
+    <th>Sort</th>
+    <th>Actions</th>
+  </tr>
+
+<% @pokemons.each do |pokemon| %>  
+  <tr>
+    <td><%= pokemon.id %></td>
+    <td><%= pokemon.name %></td>
+    <td><img src="<%= pokemon.image_url %>" alt="<%= pokemon.name %>"></td>
+    <td><%= pokemon.sort %></td>
+    <td>
+      <%= link_to 'VIEW', pokemon %>
+      <%= link_to 'EDIT', pokemon %>
+      <%= link_to 'DELETE', pokemon %>
+    </td>
+    </td>
+  <%end%>
+</table>
