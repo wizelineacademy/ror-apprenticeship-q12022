@@ -1,13 +1,6 @@
-require 'tempfile'
-require 'fileutils'
-require 'find'
-
 class Archiver
   attr_accessor :file
-  @@modes = [:reader, :writer, :both]
-
-  def initialize
-  end
+  @@modes = %i[reader writer both]
 
   @@modes.each do |mode|
     define_method("open_file_as_#{mode}") do |file|
@@ -18,7 +11,7 @@ class Archiver
   end
 
   def read_file lines: false
-    lines ? data = self.file&.read : data = self.file&.readlines.map(&:chomp)
+    lines ? data = file&.read : data = self.file&.readlines.map(&:chomp)
   end
 
   def write_file data: nil, append: true
@@ -26,6 +19,7 @@ class Archiver
   end  
 end
 
+=begin
 # Reading a file using tempfile
 file = Tempfile.new('foo')
 file.path      # => A unique filename in the OS's temp directory,
@@ -34,3 +28,4 @@ file.rewind
 file.read      # => "hello world"
 file.close
 file.unlink    # deletes the temp file
+=end
