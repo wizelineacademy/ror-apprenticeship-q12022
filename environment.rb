@@ -1,57 +1,70 @@
-=begin
-      # define_method("set_mission_to_#{state}".to_sym) do |mission|
-      #   @mission[mission][:status] = state
-      # end
-=end
+# frozen_string_literal: true
 
 # Run tests?
-tests = false
 
-# create a module named Environment 
+tests = true
+
+# create a module named Environment
 module Environment
   # Depot
   class Depot
     # Packs available for the player
     attr_accessor :packs
+
     def initialize
       @packs = {
-        simple_trasportation_pack: {
-          inteligence: [:cellphone],
-          items: [:medipack, :chevy_versa]
-        },
-        standard_trasportation_pack: {
-          inteligence: [:cellphone, :antenna],
-          arsenal: [:colt_1911],
-          items: [:handcuffs, :medipack, :chemistry, :chevy_versa]
-        },
-        simple_mission_pack: {
-          inteligence: [:infopack, :laptop, :cellphone, :antenna],
-          arsenal: [:colt_1911],
-          items: [:handcuffs, :medipack, :chemistry, :financial]
-        },
-        standard_mission_pack: {
-          inteligence: [:infopack, :laptop, :cellphone, :antenna],
-          arsenal: [:remington_870, :colt_1911, :machete, :hatchet],
-          items: [:handcuffs, :medipack, :chemistry, :financial]
-        }
+        simple_trasportation_pack: simple_trasportation_pack,
+        standard_trasportation_pack: standard_trasportation_pack,
+        simple_mission_pack: simple_mission_pack,
+        standard_mission_pack: standard_mission_pack
       }
     end
 
-  end
+    def simple_trasportation_pack
+      {
+        inteligence: %i[cellphone],
+        items: %i[medipack chevy_versa]
+      }
+    end
 
+    def standard_trasportation_pack
+      {
+        inteligence: %i[cellphone antenna],
+        arsenal: %i[colt_1911],
+        items: %i[handcuffs medipack chemistry chevy_versa]
+      }
+    end
+
+    def simple_mission_pack
+      {
+        inteligence: %i[infopack laptop cellphone antenna],
+        arsenal: %i[colt_1911],
+        items: %i[handcuffs medipack chemistry financial]
+      }
+    end
+
+    def standard_mission_pack
+      {
+        inteligence: %i[infopack laptop cellphone antenna],
+        arsenal: %i[remington_870 colt_1911 machete hatchet],
+        items: %i[handcuffs medipack chemistry financial]
+      }
+    end
+  end
 
   # Control class
   class Control
-    attr_accessor  :missions
-    def initialize 
-      @missions = Hash.new
-      @states = [:paused, :aborted, :failed, :accomplished]
+    attr_accessor :missions
+
+    def initialize
+      @missions = {}
+      @states = %i[paused aborted failed accomplished]
       generate_methods
     end
 
     # Starts a new mission
     def new_mission(name, objective, pack)
-      @missions[name] = {objective: objective, pack: pack, status: :active}
+      @missions[name] = { objective: objective, pack: pack, status: :active }
     end
 
     # Metaprogramming section:
@@ -61,27 +74,27 @@ module Environment
     #  set_mission_to_paused
     #  set_mission_to_aborted
     #  set_mission_to_failed
-    
+
     def generate_methods
       @states.each do |state|
         self.class.define_method("set_mission_to_#{state}".to_sym) do |mission|
           @missions[mission][:status] = state
-          puts "Mission #{mission} status changed to #{state} "
+          puts "Mission '#{mission}' status changed to #{state} "
         end
       end
     end
-
   end
-
 
   # Human class
   class Human
     attr_accessor :id, :name, :personal_data, :professional_data
-    def initialize
-      @id = self.object_id            # Id of object when created
-      @name                           # Name given by user when instantiated
-      @personal_data = Hash.new       # Hash
-      @professional_data              # kwargs 
+
+    def initialize(name = 'John Doe')
+      @id = object_id                 # Id of object when created
+      @name = name                    # Name given by user when instantiated
+      @personal_data = {}             # Hash
+      @professional_data = {}         # kwargs
+      generate_methods
     end
 
     # Metaprogramming section:
@@ -90,29 +103,35 @@ module Environment
     # Methods
     #   set_personal data
     #   set_professional_data
-    # 
-    
+
+    def generate_methods
+      # TODO
+      nil
+    end
   end
 
+  # Class Worker
   class Worker < Human
     attr_accessor :standard_shift, :extra_shift
 
-    def initialize  
-      @id = self.object_id
-      @extra_shift = Hash.new
-      @standard_shift = Hash.new
+    def initialize
+      super
+      @extra_shift = {}
+      @standard_shift = {}
     end
 
-    def set_worker_shifts
-      @standard_shift = {
+    def standard_shift_data
+      {
         id: @id,
         hours: 8,
         payment: 8,
         facility: String.new,
         status: nil
       }
+    end
 
-      @extra_shift = {
+    def extra_shift_data
+      {
         id: @id,
         hours: 0,
         payment: 0.0,
@@ -121,23 +140,28 @@ module Environment
       }
     end
 
+    def set_worker_shifts
+      @standard_shift = standard_shift_data
+      @extra_shift = extra_shift_data
+    end
   end
-
 end
 
 include Environment
 
-
-# Depot tests
-depot = Depot.new
-
 if tests == true
-    # Control tests
+  # Depot tests
+  puts '------------------'
+  puts 'Depot tests'
+  puts '------------------'
+  depot = Depot.new
+
+  # Control tests
   puts '------------------'
   puts 'Control tests'
   puts '------------------'
 
-  control = Control.new()
+  control = Control.new
   name = :alpha
   objective = 'Get Alpha to the base'
   pack = :simple_trasportation_pack
@@ -147,8 +171,7 @@ if tests == true
   control.set_mission_to_aborted(name)
   control.set_mission_to_failed(name)
   control.set_mission_to_accomplished(name)
-  
-  
+
   # Human tests
   puts
   puts '------------------'
@@ -158,7 +181,7 @@ if tests == true
   human = Human.new
   puts "Human class id: #{human.id}"
   puts
-  
+
   # Worker tests
   puts
   puts '------------------'
@@ -167,12 +190,14 @@ if tests == true
 
   worker = Worker.new
   worker.set_worker_shifts
-  
+
   puts worker.standard_shift
   puts worker.extra_shift
   puts "Hours class: #{worker.extra_shift[:payment].class}"
   puts "Payment class: #{worker.extra_shift[:payment].class}"
+  worker.extra_shift[:hours] = 2
+  puts worker.extra_shift
   # puts depot.packs[:simple_mission_pack]
   # puts control.missions['alpha']
-  
+
 end
