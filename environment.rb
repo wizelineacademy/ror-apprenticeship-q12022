@@ -2,7 +2,7 @@
 
 # Run tests?
 
-tests = true
+tests = false
 
 # create a module named Environment
 module Environment
@@ -87,13 +87,12 @@ module Environment
 
   # Human class
   class Human
-    attr_accessor :id, :name, :personal_data, :professional_data
+    attr_accessor :id, :name
 
     def initialize(name = 'John Doe')
       @id = object_id                 # Id of object when created
       @name = name                    # Name given by user when instantiated
-      @personal_data = {}             # Hash
-      @professional_data = {}         # kwargs
+      @data_types = %i[personal_data professional_data]
       generate_methods
     end
 
@@ -105,8 +104,13 @@ module Environment
     #   set_professional_data
 
     def generate_methods
-      # TODO
-      nil
+      @data_types.each do |data|
+        self.class.send(:attr_accessor, data.to_sym)
+        self.class.define_method("set_#{data}".to_sym) do |data_input|
+          instance_variable_set("@#{data}", data_input)
+          puts "#{data} updated"
+        end
+      end
     end
   end
 
@@ -114,7 +118,7 @@ module Environment
   class Worker < Human
     attr_accessor :standard_shift, :extra_shift
 
-    def initialize
+    def initialize(name)
       super
       @extra_shift = {}
       @standard_shift = {}
@@ -188,15 +192,39 @@ if tests == true
   puts 'Worker class tests'
   puts '------------------'
 
-  worker = Worker.new
-  worker.set_worker_shifts
+  diego = Worker.new('Diego')
+  # worker.set_worker_shifts
 
-  puts worker.standard_shift
-  puts worker.extra_shift
-  puts "Hours class: #{worker.extra_shift[:payment].class}"
-  puts "Payment class: #{worker.extra_shift[:payment].class}"
-  worker.extra_shift[:hours] = 2
-  puts worker.extra_shift
+  personal_data =
+    {
+      surname: 'Mota',
+      age: 40,
+      country: :mx,
+      language: :es,
+      marital_status: :single,
+      children: 0
+    }
+
+  professional_data =
+    {
+      position: 'SE',
+      occupation: 'IT',
+      skills: %i[ruby blender],
+      observations: 'none'
+    }
+
+  diego.set_personal_data(personal_data)
+  diego.set_professional_data(professional_data)
+
+  puts "#{diego.name}, #{diego.class}", diego.personal_data, diego.professional_data
+
+  # puts worker.standard_shift
+  # puts worker.extra_shift
+  # puts "Hours class: #{worker.extra_shift[:payment].class}"
+  # puts "Payment class: #{worker.extra_shift[:payment].class}"
+  # worker.extra_shift[:hours] = 2
+  # puts worker.extra_shift
+
   # puts depot.packs[:simple_mission_pack]
   # puts control.missions['alpha']
 
