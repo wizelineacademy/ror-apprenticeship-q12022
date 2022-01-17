@@ -40,7 +40,7 @@ class Archiver
 
     lines.each do |line|
       words = line.split(' ')
-      letters = words.map { &:length }.inject(:+)
+      letters = words.map(&:length).inject(:+)
       puts "This line has #{words.length} words and #{letters} letters"
     end
   end
