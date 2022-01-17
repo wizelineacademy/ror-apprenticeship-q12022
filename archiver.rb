@@ -11,7 +11,7 @@ class Archiver
   end
 
   def read_file lines: false
-    lines ? file&.read : file&.readlines.map(&:chomp)
+    lines ? file.read : file.readlines.map(&:chomp)
   end
 
   def write_file data: nil, append: true
@@ -20,8 +20,12 @@ class Archiver
 end
 
 test = Archiver.new
-test.open_file_as_reader("testing_text.txt")
+test.open_file_as_both("testing_text.txt")
+test.write_file(data: "Still testing", append: true)
 p test.read_file
+=begin
+test.file.close
+=end
 
 =begin
 # Reading a file using tempfile
