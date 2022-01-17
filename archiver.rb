@@ -2,9 +2,11 @@ require 'tempfile'
 require 'fileutils'
 require 'find'
 
+# Class for reading an writting files
 class Archiver
   attr_accessor :file
-  @@modes = [:reader, :writer, :both]
+
+  @@modes = %i[reader writer both]
 
   @@modes.each do |mode|
     define_method("open_file_as_#{mode}") do |file|
@@ -14,12 +16,12 @@ class Archiver
     end
   end
 
-  def read_file lines: false
-    lines ? data = self.file&.read : data = self.file&.readlines.map(&:chomp)
+  def read_file(lines: false)
+    lines ? file&.read : file&.readlines.map(&:chomp)
   end
 
-  def write_file data: nil, append: true
-    append ? File.write(self.file, data, mode: "a") : File.write(self.file, data)
+  def write_file(data: nil, append: true)
+    append ? File.write(file, data, mode: 'a') : File.write(file, data)
   end
 
   def censored_file
@@ -28,31 +30,30 @@ class Archiver
     lines.each { |line| arr.push('*' * line.length) }
     write_file data: '', append: false
 
-    for i in 0..arr.length-1
-        write_file data: "#{arr[i]}\n", append: true
+    (0..arr.length - 1).each do |i|
+      write_file data: "#{arr[i]}\n", append: true
     end
   end
-  
+
   def counting_words
     lines = read_file
 
     lines.each do |line|
-        words = line.split(' ')
-        letters = words.map { |word| word.length }.inject(:+)
-        puts "This line has #{words.length} words and #{letters} letters"
+      words = line.split(' ')
+      letters = words.map { &:length }.inject(:+)
+      puts "This line has #{words.length} words and #{letters} letters"
     end
   end
-
 end
 
 # Reading a file using tempfile
-#file = Tempfile.new('foo')
-#p file.path      # => A unique filename in the OS's temp directory,
-#file.write("hello world")
-#file.rewind
-#p file.read      # => "hello world"
-#file.close
-#file.unlink    # deletes the temp file
+# file = Tempfile.new('foo')
+# p file.path      # => A unique filename in the OS's temp directory,
+# file.write("hello world")
+# file.rewind
+# p file.read      # => "hello world"
+# file.close
+# file.unlink    # deletes the temp file
 
 a = Archiver.new
 file = a.open_file_as_both('one.txt')
