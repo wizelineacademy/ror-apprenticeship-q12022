@@ -11,13 +11,17 @@ class Archiver
   end
 
   def read_file lines: false
-    lines ? data = file&.read : data = self.file&.readlines.map(&:chomp)
+    lines ? file&.read : file&.readlines.map(&:chomp)
   end
 
   def write_file data: nil, append: true
-    append ? File.write(self.file, data, mode: "a") : File.write(self.file, data)
+    append ? File.write(file, data, mode: "a") : File.write(file, data)
   end  
 end
+
+test = Archiver.new
+test.open_file_as_reader("testing_text.txt")
+p test.read_file
 
 =begin
 # Reading a file using tempfile
