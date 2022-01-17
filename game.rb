@@ -23,33 +23,34 @@ class Game
   end
 end
 
-game = Game.new
-p game.depot.packs[:simple_transportation_pack]
-p game.depot.packs[:standard_mission_pack]
-p game.depot.packs[:standard_mission_pack][:items]
-p '--------------------------------------------------------'
+# game = Game.new
+# p game.depot.packs[:simple_transportation_pack]
+# p game.depot.packs[:standard_mission_pack]
+# p game.depot.packs[:standard_mission_pack][:items]
+# p '--------------------------------------------------------'
 
-name = :alpha
-objective = 'Get Alpha to the base'
-pack = :simple_transportation_pack
-game.control.new_mission name: name, objective: objective, pack: game.depot.packs[pack]
-puts game.control.missions[:alpha]
-p '---------------------------------------------------------'
+# name = nil
+# objective = 'Get Alpha to the base'
+# pack = :simple_transportation_pack
+# game.control.new_mission name: name, objective: objective, pack: game.depot.packs[pack]
+# game.control.new_mission name: name, objective: objective, pack: game.depot.packs[pack]
+# puts game.control.missions[:alpha]
+# p '---------------------------------------------------------'
 
-game.control.set_mission_to_accomplished(:alpha)
-puts game.control.missions[:alpha]
-p '---------------------------------------------------------'
+# game.control.set_mission_to_accomplished(:alpha)
+# puts game.control.missions[:alpha]
+# p '---------------------------------------------------------'
 
-diego = game.new_worker name: 'Diego'
-diego.set_personal_data surname: 'Mota', age: 40, marital_status: :single, children: 0, country: :mx, language: :es
-diego.set_professional_data position: 'SE', occupation: 'IT', skills: %i[ruby blender], observations: 'none'
-puts "#{diego.name}, #{diego.class}", diego.personal_data, diego.professional_data
-p '---------------------------------------------------------'
+# diego = game.new_worker name: 'Diego'
+# diego.set_personal_data surname: 'Mota', age: 40, marital_status: :single, children: 0, country: :mx, language: :es
+# diego.set_professional_data position: 'SE', occupation: 'IT', skills: %i[ruby blender], observations: 'none'
+# puts "#{diego.name}, #{diego.class}", diego.personal_data, diego.professional_data
+# p '---------------------------------------------------------'
 
-name = :alpha
-objective = 'Get Alpha to the base'
-pack = :simple_transportation_pack
-game.control.new_mission name: name, objective: objective, pack: game.depot.packs[pack]
-puts game.control.missions[:alpha]
-game.control.set_mission_to_accomplished(:alpha)
-puts game.control.missions[:alpha]
+# name = :alpha
+# objective = 'Get Alpha to the base'
+# pack = :simple_transportation_pack
+# game.control.new_mission name: name, objective: objective, pack: game.depot.packs[pack]
+# puts game.control.missions[:alpha]
+# game.control.set_mission_to_accomplished(:alpha)
+# puts game.control.missions[:alpha]

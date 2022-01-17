@@ -1,0 +1,3 @@
+Error : no implicit conversion from nil to integer. Error catched at 2022-01-16 19:42:58 -0600
+Error : you can not have empty or nil fields. Error catched at 2022-01-16 19:42:58 -0600
+Error : you can not have empty or nil fields. Error catched at 2022-01-16 19:42:58 -0600
