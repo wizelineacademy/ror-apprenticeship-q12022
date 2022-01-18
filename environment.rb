@@ -89,9 +89,9 @@ module Environment
   class Human
     attr_accessor :id, :name
 
-    def initialize(name = 'John Doe')
+    def initialize(name)
       @id = object_id                 # Id of object when created
-      @name = name                    # Name given by user when instantiated
+      @name = name == nil ? raise( ArgumentError ) : name  # Name given by user when instantiated
       @data_types = %i[personal_data professional_data]
       generate_methods
     end
