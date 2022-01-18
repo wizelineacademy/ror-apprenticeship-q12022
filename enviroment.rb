@@ -104,5 +104,5 @@ module Enviroment
   end
 end
 
-p 'Testing file'
-Enviroment::Human.new(name: 'diego')
+#p 'Testing file'
+#Enviroment::Human.new(name: 'diego')
