@@ -2,5 +2,5 @@
 
 class Pet < ApplicationRecord
   belongs_to :pokemon
-  belongs_to :trainer
+  belongs_to :trainer, { optional: true }
 end
