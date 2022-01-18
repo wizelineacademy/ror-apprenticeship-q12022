@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Environment
   # Class to declare depot
   class Depot
@@ -5,24 +7,14 @@ module Environment
 
     def initialize
       @packs = {
-        simple_transportation_pack: [
-          intelligence: %i[cellphone],
-          items: %i[medipack chevy_versa]
-        ],
-        standard_transportation_pack: [
-          intelligence: %i[cellphone antenna],
-          arsenal: %i[colt_1911],
-          items: %i[handcuffs mediapack chemistry chevy_versa]
-        ],
-        simple_mission_pack: [
-          intelligence: %i[infopack laptop cellphone antenna],
-          arsenal: %i[[colt_1911] [handcuffs mediapack chemistry financial]],
-        ],
-        standard_mission_pack: [
-          intelligence: %i[infopack laptop cellphone antenna],
-          arsenal: %i[remington_870 colt_1911 machete hatchet],
-          items: %i[handcuffs mediapack chemistry financial]
-        ]
+        simple_transportation_pack: [intelligence: %i[cellphone], items: %i[medipack chevy_versa]],
+        standard_transportation_pack: [intelligence: %i[cellphone antenna], arsenal: %i[colt1911],
+                                       items: %i[handcuffs mediapack chemistry chevy_versa]],
+        simple_mission_pack: [intelligence: %i[infopack laptop cellphone antenna],
+                              arsenal: %i[[colt1911] [handcuffs mediapack chemistry financial]]],
+        standard_mission_pack: [intelligence: %i[infopack laptop cellphone antenna],
+                                arsenal: %i[remington870 colt1911 machete hatchet],
+                                items: %i[handcuffs mediapack chemistry financial]]
       }
     end
   end
@@ -31,7 +23,7 @@ module Environment
   class Control
     attr_accessor :missions
 
-    @@states = %i[paused aborted accomplished failed]
+    @states = %i[paused aborted accomplished failed]
 
     def initialize
       @missions = {}
@@ -45,7 +37,7 @@ module Environment
       }
     end
 
-    @@states.each do |state|
+    @states.each do |state|
       define_method("set_mission_to_#{state}") do |mission|
         @missions[mission][:status] = state
       end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'environment'
 
 # Class to test errors
@@ -11,28 +13,22 @@ class ErrorTest
   end
 
   def new_worker(name: nil)
-    begin
-      @board[:players].store name, Environment::Worker.new(name)
-    rescue NoMethodError
-      puts 'No name for worker given'
-    end
+    @board[:players].store name, Environment::Worker.new(name)
+  rescue NoMethodError
+    puts 'No name for worker given'
   end
 
   def set_worker_data(name, type, data)
-    begin
-      @board[:players][name].send("set_#{type}_data", data)
-    rescue NoMethodError
-      puts 'Worker or type of data not found'
-    end
+    @board[:players][name].send("set_#{type}_data", data)
+  rescue NoMethodError
+    puts 'Worker or type of data not found'
   end
 
   def estimate_payment_extra_hours(worker, hours)
-    begin
-      base_payment = @board[:players][worker].standard_shift[:payment]
-      base_payment * hours
-    rescue TypeError
-      puts 'Hours must be of type Integer'
-    end
+    base_payment = @board[:players][worker].standard_shift[:payment]
+    base_payment * hours
+  rescue TypeError
+    puts 'Hours must be of type Integer'
   end
 end
 
@@ -41,7 +37,7 @@ test = e.new_worker
 p test
 ana = e.new_worker(name: :Ana)
 p ana
-e.set_worker_data :ana, 'personal', {surname: 'Porras', age: 27}
+e.set_worker_data :ana, 'personal', { surname: 'Porras', age: 27 }
 p ana
 ana.initialize_shifts
 p ana
