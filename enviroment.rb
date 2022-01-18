@@ -71,13 +71,35 @@ module Enviroment
 
   # Class Human
   class Human
-    attr_accessor :id, :name, :personal_data
+    attr_accessor :id, :name
+
+    HUMAN_DATA_TYPES = %w[personal professional].freeze
 
     def initialize(**kwargs)
-      @id = self.object_id
+      @id = object_id
       @name = kwargs[:name]
-      @personal_data = kwargs[:personal_data]
-      @professional_data = kwargs[:professional_data]
+      set_data_methods
+    end
+
+    def set_data_methods
+      HUMAN_DATA_TYPES.each do |type|
+        self.class.send(:attr_accessor, "#{type}_data".to_sym)
+        self.class.define_method("set_#{type}_data".to_sym) do |data|
+          instance_variable_set("@#{type}_data", data)
+          puts "The #{type} data was updated"
+        end
+      end
+    end
+  end
+
+  # Class Worker inherited from Human
+  class Worker < Human
+    attr_accessor :standar_shift, :extra_shift
+
+    def initialize
+      super
+      @standar_shift = { id: object_id, hours: 8, payment: 8, facility: nil, status: nil }
+      @extra_shift = { id: object_id, hours: Integer.new, payment: Float.new, facility: nil, status: nil }
     end
   end
 end
