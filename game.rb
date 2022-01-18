@@ -6,15 +6,20 @@ require_relative 'enviroment'
 class Game
   include Enviroment
 
-  attr_accessor :depot, :control
+  attr_accessor :depot, :control, :board
 
   def initialize
     @depot = Enviroment::Depot.new
     @control = Enviroment::Control.new
+    @board = { players: {}, control: {}, status: nil }
   end
 
   def new_mission(name: 'default', objective: 'default', pack: :default)
     @control.new_mission(name: name, objective: objective, pack: pack)
+  end
+
+  def new_worker(name: 'default')
+    @board[:players].store(name, Enviroment::Worker.new(name: 'Diego'))
   end
 end
 
@@ -29,7 +34,7 @@ game.new_mission name: name, objective: objective, pack: game.depot.packs[pack]
 game.control.set_mission_to_accomplished(:alpha)
 puts game.control.missions[:alpha]
 
-diego = game.new_worker name: 'Diego'
+diego = game.new_worker(name: 'Diego')
 personal_data = { surname: 'Mota', age: 40, marital_status: :single, children: 0, country: :mx, language: :es }
 professional_data = { position: 'SE', occupation: 'IT', skills: %i[ruby blender], observations: 'none' }
 diego.set_personal_data personal_data

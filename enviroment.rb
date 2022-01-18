@@ -96,12 +96,13 @@ module Enviroment
   class Worker < Human
     attr_accessor :standar_shift, :extra_shift
 
-    def initialize
+    def initialize(**kwargs)
       super
       @standar_shift = { id: object_id, hours: 8, payment: 8, facility: nil, status: nil }
-      @extra_shift = { id: object_id, hours: Integer.new, payment: Float.new, facility: nil, status: nil }
+      @extra_shift = { id: object_id, hours: 0, payment: 0.0, facility: nil, status: nil }
     end
   end
 end
 
 p 'Testing file'
+Enviroment::Human.new(name: 'diego')
