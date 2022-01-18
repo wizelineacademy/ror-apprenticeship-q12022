@@ -13,7 +13,6 @@ require 'resolv-replace' # This solve net issue 'Net::OpenTimeout: Failed to ope
 begin
   pokedex_json = HTTParty.get('https://pokeapi.co/api/v2/pokemon?limit=15')
   pokedex_json['results'].each do |item|
-    begin
     poke_request = HTTParty.get(item['url'])
     poke_new = Pokemon.new
     poke_new.name = poke_request['name']
@@ -24,11 +23,10 @@ begin
       type['type']['name'].slice(0, 1).capitalize + type['type']['name'].slice(1..-1)
     end.join(',')
     poke_new.save!
-    rescue ActiveRecord::RecordNotUnique => e
-      Rails.logger.debug(e)
-    rescue StandardError => e
-      Rails.logger.debug(e)
-    end
+  rescue ActiveRecord::RecordNotUnique => e
+    Rails.logger.debug(e)
+  rescue StandardError => e
+    Rails.logger.debug(e)
   end
 rescue StandardError => e
   Rails.logger.debug(e)
