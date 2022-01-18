@@ -1,6 +1,6 @@
-class Pokemon < ApplicationRecord
+# frozen_string_literal: true
 
-  validates_presence_of :name, :poke_id
-  validates_uniqueness_of :poke_id
-  
+class Pokemon < ApplicationRecord
+  validates :name, :poke_id, presence: true
+  validates :poke_id, uniqueness: true
 end

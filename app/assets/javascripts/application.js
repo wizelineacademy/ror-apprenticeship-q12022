@@ -18,5 +18,3 @@
 //= require turbolinks
 //= require_tree 
 //= require packs/custom/datatables.js
-
-

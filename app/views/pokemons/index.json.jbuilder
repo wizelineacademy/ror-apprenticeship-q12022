@@ -1,1 +1,3 @@
-json.array! @pokemons, partial: "pokemons/pokemon", as: :pokemon
+# frozen_string_literal: true
+
+json.array!(@pokemons, partial: 'pokemons/pokemon', as: :pokemon)
