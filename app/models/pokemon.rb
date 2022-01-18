@@ -3,4 +3,6 @@
 class Pokemon < ApplicationRecord
   validates :name, :poke_id, presence: true
   validates :poke_id, uniqueness: true
+
+  has_many :pets, dependent: :destroy
 end
