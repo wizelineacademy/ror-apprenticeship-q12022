@@ -1,45 +1,65 @@
-require "test_helper"
+# frozen_string_literal: true
+
+require 'test_helper'
 
 class TrainersControllerTest < ActionDispatch::IntegrationTest
   setup do
     @trainer = trainers(:one)
   end
 
-  test "should get index" do
+  test 'should get index' do
     get trainers_url
     assert_response :success
   end
 
-  test "should get new" do
+  test 'should get new' do
     get new_trainer_url
     assert_response :success
   end
 
-  test "should create trainer" do
-    assert_difference("Trainer.count") do
-      post trainers_url, params: { trainer: { age: @trainer.age, hometown: @trainer.hometown, last_name: @trainer.last_name, name: @trainer.name, region: @trainer.region } }
+  test 'should create trainer' do
+    assert_difference('Trainer.count') do
+      post trainers_url,
+           params: {
+             trainer: {
+               age: @trainer.age,
+               hometown: @trainer.hometown,
+               last_name: @trainer.last_name,
+               name: @trainer.name,
+               region: @trainer.region
+             }
+           }
     end
 
     assert_redirected_to trainer_url(Trainer.last)
   end
 
-  test "should show trainer" do
+  test 'should show trainer' do
     get trainer_url(@trainer)
     assert_response :success
   end
 
-  test "should get edit" do
+  test 'should get edit' do
     get edit_trainer_url(@trainer)
     assert_response :success
   end
 
-  test "should update trainer" do
-    patch trainer_url(@trainer), params: { trainer: { age: @trainer.age, hometown: @trainer.hometown, last_name: @trainer.last_name, name: @trainer.name, region: @trainer.region } }
+  test 'should update trainer' do
+    patch trainer_url(@trainer),
+          params: {
+            trainer: {
+              age: @trainer.age,
+              hometown: @trainer.hometown,
+              last_name: @trainer.last_name,
+              name: @trainer.name,
+              region: @trainer.region
+            }
+          }
     assert_redirected_to trainer_url(@trainer)
   end
 
-  test "should destroy trainer" do
-    assert_difference("Trainer.count", -1) do
+  test 'should destroy trainer' do
+    assert_difference('Trainer.count', -1) do
       delete trainer_url(@trainer)
     end
 
