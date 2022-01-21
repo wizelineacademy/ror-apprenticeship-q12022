@@ -66,6 +66,6 @@ class TrainersController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def trainer_params
-    params.require(:trainer).permit(:name, :last_name, :age, :region, :hometown)
+    params.require(:trainer).permit(:name, :last_name, :age, :region, :hometown, pets_attributes: %i[id name gender caught_at pokemon_id])
   end
 end
