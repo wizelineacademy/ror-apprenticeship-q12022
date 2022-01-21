@@ -11,10 +11,21 @@
     <%= javascript_importmap_tags %>
     
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-    
+    <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+       
   </head>
 
   <body>
-    <%= yield %>
+    
+    <!-- Navigation-->
+    <%= render(:partial => 'layouts/navigation') %>
+    <!-- Body Content-->
+    <div class="content-body">
+      <%= yield %>
+    </div>
+    <%= render(:partial => 'layouts/footer') %>
+
   </body>
 </html>
