@@ -1,0 +1,27 @@
+
+<table id="pokemon_table" class="table table-striped table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Image</th>
+      <th>Sort</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @pokemons.each do |pokemon| %>  
+      <tr>
+        <td><%= pokemon.id %></td>
+        <td><%= pokemon.name %></td>
+        <td><img src="<%= pokemon.image_url %>" alt="<%= pokemon.name %>"></td>
+        <td><%= pokemon.sort %></td>
+        <td>
+          <%= link_to 'VIEW', pokemon %>
+          <%= link_to 'EDIT', pokemon %>
+          <%= link_to 'DELETE', pokemon %>
+        </td>
+      </tr>
+    <%end%>
+  </tbody>
+</table>
