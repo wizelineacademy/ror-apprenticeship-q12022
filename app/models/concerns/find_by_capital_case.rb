@@ -6,6 +6,6 @@ module FindByCapitalCase
   extend ActiveSupport::Concern
 
   included do
-    scope :find_by_cc, lambda { |attribute, value| where("lower(#{attribute}) = ?", value.downcase).first }
+    scope :find_by_cc, -> (attribute, value) { where("lower(#{attribute}) = ?", value.downcase).first }
   end
 end

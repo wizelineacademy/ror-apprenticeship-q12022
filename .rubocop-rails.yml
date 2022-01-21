@@ -46,6 +46,9 @@ Rails/RenderInline:
 Rails/RenderPlainText:
   Enabled: true
 
+Rails/DynamicFindBy:
+  Enabled: false
+
 Rails/SaveBang:
   Enabled: true
   AllowImplicitReturn: false

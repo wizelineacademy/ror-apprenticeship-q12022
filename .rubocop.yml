@@ -170,6 +170,7 @@ Metrics/BlockLength:
   Exclude:
     - '**/spec/**/*'
     - '**/*.rake'
+    - '**/db/**/*'
     - '**/factories/**/*'
     - '**/config/routes.rb'
 

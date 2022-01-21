@@ -5,7 +5,8 @@
       <th>Id</th>
       <th>Name</th>
       <th>Image</th>
-      <th>Sort</th>
+      <th>Types</th>
+      <th>Abilities</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -15,7 +16,8 @@
         <td><%= pokemon.id %></td>
         <td><%= pokemon.name %></td>
         <td><img src="<%= pokemon.image_url %>" alt="<%= pokemon.name %>"></td>
-        <td><%= pokemon.sort %></td>
+        <td><%= pokemon.poke_types.map do |type| type.name end.join(', ')%></td>
+        <td><%= pokemon.abilities.map do |ability| ability.name end.join(', ')%></td>
         <td>
           <%= link_to 'VIEW', pokemon %>
           <%= link_to 'EDIT', pokemon %>
