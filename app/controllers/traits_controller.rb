@@ -3,7 +3,8 @@ class TraitsController < ApplicationController
 
   # GET /traits or /traits.json
   def index
-    @traits = Trait.all
+    @pagy, @traits = pagy(Trait.all)
+    #@traits = Trait.all
   end
 
   # GET /traits/1 or /traits/1.json
