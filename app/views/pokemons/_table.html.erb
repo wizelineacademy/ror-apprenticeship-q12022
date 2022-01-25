@@ -3,6 +3,7 @@
   <thead>
     <tr>
       <th>Id</th>
+      <th>Poke Id</th>
       <th>Name</th>
       <th>Image</th>
       <th>Types</th>
@@ -14,14 +15,25 @@
     <% @pokemons.each do |pokemon| %>  
       <tr>
         <td><%= pokemon.id %></td>
+        <td><%= pokemon.poke_id %></td>
         <td><%= pokemon.name %></td>
         <td><img src="<%= pokemon.image_url %>" alt="<%= pokemon.name %>"></td>
         <td><%= pokemon.poke_types.map do |type| type.name end.join(', ')%></td>
         <td><%= pokemon.abilities.map do |ability| ability.name end.join(', ')%></td>
         <td>
-          <%= link_to 'VIEW', pokemon %>
-          <%= link_to 'EDIT', pokemon %>
-          <%= link_to 'DELETE', pokemon %>
+          <%= link_to pokemon_path(pokemon),
+            {:class=>"btn btn-icon-only btn-info", :title=>"Show"} do %>
+            <i class="fa fa-eye"></i>
+          <%end%>
+          <%= link_to edit_pokemon_path(pokemon), 
+            {:class=>"btn btn-icon-only btn-primary", :title=>"Edit"} do %>
+            <i class="fa fa-edit"></i>
+          <%end%>
+	        <%= link_to pokemon , method: :delete, :class => "btn btn-icon-only btn-danger",
+            :title=>"Delete", data: { confirm: '¿Are you sure want to delete '+pokemon.name+'?'} do %> 
+            <i class="fa fa-trash-o"></i>
+          <% end %>	
+
         </td>
       </tr>
     <%end%>

@@ -1,17 +1,75 @@
-<%= form_with(model: pokemon) do |form| %>
-  <% if pokemon.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(pokemon.errors.count, "error") %> prohibited this pokemon from being saved:</h2>
+<div class="row">
+  <div class="col-md-6">
+    <%= form_with(model: pokemon) do |form| %>
+      <% if pokemon.errors.any? %>
+        <div style="color: red">
+          <h2><%= pluralize(pokemon.errors.count, "error") %> prohibited this pokemon from being saved:</h2>
 
-      <ul>
-        <% pokemon.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+          <ul>
+            <% pokemon.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
 
-  <div>
-    <%= form.submit %>
+      <div class="row">
+        <div class="col-md-2">
+          <%= form.label :name, style: "display: block" %>
+        </div>
+        <div class="col-md-6">
+          <%= form.text_field :name, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2">
+          <%= form.label :poke_id, style: "display: block" %>
+          </div>
+        <div class="col-md-6">
+          <%= form.text_field :poke_id, class: 'form-control' %>
+        </div>
+      </div>
+ 
+      <div class="row">
+        <div class="col-md-2">
+          <%= form.label :poke_types, style: "display: block" %>
+          </div>
+        <div class="col-md-6">
+          <%= form.select(:poke_types, options_for_select(@poke_types.map{|poke_type| [poke_type.name,poke_type.id]},
+            @pokemon.poke_types.map(&:id)),
+            { class: 'form-control'},
+            { :multiple => true, :size => 10 }       
+          ) %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2">
+          <%= form.label :abilities, style: "display: block" %>
+          </div>
+        <div class="col-md-6">
+          <%= form.select(:abilities, options_for_select(@abilities.map{|ability| [ability.name,ability.id]},
+            @pokemon.abilities.map(&:id)),
+            { class: 'form-control'},
+            { :multiple => true, :size => 10}       
+          ) %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2">
+          <%= form.label :image_url, style: "display: block" %>
+          </div>
+        <div class="col-md-6">
+          <%= form.text_field :image_url, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="row action-btn">
+        <div class="col-md-2">
+          <%= form.submit %>
+        </div>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>
