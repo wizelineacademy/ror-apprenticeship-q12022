@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-for a in 1..898 do # currently there are 898 pokemons
+for a in 546..898 do # currently there are 898 pokemons
   poke_response = HTTParty.get("https://pokeapi.co/api/v2/pokemon/#{a}")
   newpoke = Pokemon.find_or_initialize_by(name: poke_response['name'])
   unless newpoke.new_record?
