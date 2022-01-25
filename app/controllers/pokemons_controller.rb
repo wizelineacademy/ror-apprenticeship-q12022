@@ -3,7 +3,7 @@ class PokemonsController < ApplicationController
 
   # GET /pokemons or /pokemons.json
   def index
-    @pagy, @pokemons = pagy(Pokemon.all,items: 10)
+    @pagy, @pokemons = pagy(Pokemon.all.order(:pokedex_number),items: 10)
     #@pokemons = Pokemon.all
   end
 
