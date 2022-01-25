@@ -1,10 +1,10 @@
 class PokemonsController < ApplicationController
-  before_action :set_pokemon, only: %i[ show edit update destroy ]
+  before_action :set_pokemon, only: %i[show edit update destroy]
 
   # GET /pokemons or /pokemons.json
   def index
-    @pagy, @pokemons = pagy(Pokemon.all.order(:pokedex_number),items: 10)
-    #@pokemons = Pokemon.all
+    @pagy, @pokemons = pagy(Pokemon.all.order(:pokedex_number), items: 10)
+    # @pokemons = Pokemon.all
   end
 
   # GET /pokemons/1 or /pokemons/1.json
@@ -22,12 +22,12 @@ class PokemonsController < ApplicationController
 
   # POST /pokemons or /pokemons.json
   def create
-    @trainer = Trainer.find_by_trainer_tag("Aldo")
+    @trainer = Trainer.find_by_trainer_tag('Aldo')
     puts @trainer.trainer_tag
     @pokemon = Pokemon.new(pokemon_params)
     @pokemon.pokedex_number = 10
-    #@pokemon.trainer_tag = "Aldo"
-    #@pokemon.pokedex_number = Pokemon.order(:pokedex_number).last
+    # @pokemon.trainer_tag = "Aldo"
+    # @pokemon.pokedex_number = Pokemon.order(:pokedex_number).last
     respond_to do |format|
       if @pokemon.save
         format.html { redirect_to pokemon_url(@pokemon), notice: "Pokemon was successfully created." }
@@ -63,13 +63,14 @@ class PokemonsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_pokemon
-      @pokemon = Pokemon.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def pokemon_params
-       params.require(:pokemon).permit(:name,:height,:weight)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_pokemon
+    @pokemon = Pokemon.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def pokemon_params
+    params.require(:pokemon).permit(:name, :height, :weight)
+  end
 end

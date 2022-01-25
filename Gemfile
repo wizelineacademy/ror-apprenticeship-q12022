@@ -29,7 +29,7 @@ gem "jbuilder"
 
 #HTTP request handler
 gem "httparty"
-# Pagination Gem 
+# Pagination Gem
 gem 'pagy', '~> 5.9' # omit patch digit
 
 # Use Redis adapter to run Action Cable in production
@@ -45,10 +45,12 @@ gem 'pagy', '~> 5.9' # omit patch digit
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
 # Reduces boot times through caching; required in config/boot.rb
-gem "bootsnap", require: false
+ gem "bootsnap", require: false
+
+gem "bulma-rails", "~> 0.9.2"
 
 # Use Sass to process CSS
-# gem "sassc-rails"
+gem "sassc-rails"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"

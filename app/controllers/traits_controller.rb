@@ -4,7 +4,7 @@ class TraitsController < ApplicationController
   # GET /traits or /traits.json
   def index
     @pagy, @traits = pagy(Trait.all)
-    #@traits = Trait.all
+    # @traits = Trait.all
   end
 
   # GET /traits/1 or /traits/1.json
@@ -59,13 +59,14 @@ class TraitsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_trait
-      @trait = Trait.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def trait_params
-      params.fetch(:trait, {})
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_trait
+    @trait = Trait.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def trait_params
+    params.fetch(:trait, {})
+  end
 end
