@@ -1,6 +1,5 @@
 class Api::PokemonsController < ApplicationController
   before_action :set_pokemon
-
   def show
     render json: {
       name: @pokemon.name,
