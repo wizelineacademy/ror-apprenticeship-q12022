@@ -14,3 +14,13 @@
  *= require_self
  */
 @import "bulma";
+
+.tight-pagi{
+  width: 50%;
+  margin: 0 auto;
+  width: fit-content;
+}
+
+.right-side{
+  text-align: right;
+}

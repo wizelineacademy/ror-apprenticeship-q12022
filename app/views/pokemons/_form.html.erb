@@ -24,9 +24,11 @@
     <tr>
       <th>Height:<th>
       <td><%= form.text_field :height %></td>
-
     </tr>
-
+    <tr>
+      <th>Sprite(URL)<th>
+      <td><%= form.text_field :sprite, value: "https://via.placeholder.com/96" %></td>
+    </tr>
     </table>
     <%= form.submit %>
   </div>

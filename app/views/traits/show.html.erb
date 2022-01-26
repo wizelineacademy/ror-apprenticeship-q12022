@@ -3,8 +3,9 @@
 <%= render @trait %>
 
 <div>
-  <%= link_to "Edit this trait", edit_trait_path(@trait) %> |
+  <% if trainer_signed_in? %>
+      <%= link_to "Edit this trait", edit_trait_path(@trait) %> |
+      <%= button_to "Destroy this trait", @trait, method: :delete, class: "button is-danger is-outlined"%>
+  <%end%>
   <%= link_to "Back to traits", traits_path %>
-
-  <%= button_to "Destroy this trait", @trait, method: :delete %>
 </div>

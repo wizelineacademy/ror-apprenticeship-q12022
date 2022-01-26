@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="has-navbar-fixed-top">
   <head>
     <title>Pokedex</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -10,7 +10,12 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body style="padding-top: 15px">
+    <%= render partial: "shared/navbar" %>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <div class="container">
     <%= yield %>
+    </div>
   </body>
 </html>

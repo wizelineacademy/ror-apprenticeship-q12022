@@ -1,0 +1,47 @@
+<nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation" style="padding-top: 5px">
+  <div class="navbar-brand">
+
+    <a class="navbar-item" >
+
+      <%= link_to root_path do %>
+        <%= image_tag '/pokedex_logo.png', width: 112, height: 28, alt: 'Pokedex logo'%>
+    <% end %>
+
+    </a>
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a>
+        <%= link_to "My Team",team_path, class: "navbar-item" %>
+      </a>
+      <a>
+        <%= link_to "Traits",traits_path, class: "navbar-item" %>
+      </a>
+      </div>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <% if trainer_signed_in? %>
+            <a class="button is-link is-inverted is-primary " >
+
+
+            <%= link_to "Logout", destroy_trainer_session_path, method: 'delete'%>
+            </a>
+
+          <% else %>
+            <%= link_to "Sign Up", new_trainer_registration_path, class: "button is-link is-inverted is-light" %>
+            <%= link_to "Log in", new_trainer_session_path, class: "button is-link is-inverted is-primary " %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

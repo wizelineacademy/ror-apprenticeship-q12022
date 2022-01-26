@@ -12,6 +12,6 @@ class Pokemon < ApplicationRecord
   validates :weight, presence: true
   validates :height, numericality: { only_integer: true }
   validates :weight, numericality: { only_integer: true }
-  validates :height, numericality: { in: 1..100 }
-  validates :weight, numericality: { in: 1..100 }
+  validates :height, numericality: { in: 1..10000 }
+  validates :weight, numericality: { in: 1..10000 }
 end

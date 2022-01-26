@@ -14,20 +14,20 @@
 # Instance variables
 # See https://ddnexus.github.io/pagy/api/pagy#instance-variables
 # Pagy::DEFAULT[:page]   = 1                                  # default
-# Pagy::DEFAULT[:items]  = 20                                 # default
+Pagy::DEFAULT[:items]  = 10                                 # default
 # Pagy::DEFAULT[:outset] = 0                                  # default
 
 
 # Other Variables
 # See https://ddnexus.github.io/pagy/api/pagy#other-variables
-# Pagy::DEFAULT[:size]       = [1,4,4,1]                       # default
+Pagy::DEFAULT[:size]       = [1,3,3,1]                       # default
 # Pagy::DEFAULT[:page_param] = :page                           # default
 # The :params can be also set as a lambda e.g ->(params){ params.exclude('useless').merge!('custom' => 'useful') }
 # Pagy::DEFAULT[:params]     = {}                              # default
 # Pagy::DEFAULT[:fragment]   = '#fragment'                     # example
 # Pagy::DEFAULT[:link_extra] = 'data-remote="true"'            # example
 # Pagy::DEFAULT[:i18n_key]   = 'pagy.item_name'                # default
-# Pagy::DEFAULT[:cycle]      = true                            # example
+Pagy::DEFAULT[:cycle]      = true                            # example
 
 
 # Extras
@@ -120,7 +120,7 @@
 
 # Bulma extra: Add nav, nav_js and combo_nav_js helpers and templates for Bulma pagination
 # See https://ddnexus.github.io/pagy/extras/bulma
-# require 'pagy/extras/bulma'
+require 'pagy/extras/bulma'
 
 # Foundation extra: Add nav, nav_js and combo_nav_js helpers and templates for Foundation pagination
 # See https://ddnexus.github.io/pagy/extras/foundation
@@ -146,7 +146,7 @@
 
 # Multi size var used by the *_nav_js helpers
 # See https://ddnexus.github.io/pagy/extras/navs#steps
-# Pagy::DEFAULT[:steps] = { 0 => [2,3,3,2], 540 => [3,5,5,3], 720 => [5,7,7,5] }   # example
+#Pagy::DEFAULT[:steps] = { 0 => [2,3,3,2], 540 => [3,5,5,3], 720 => [5,7,7,5] }   # example
 
 
 # Feature Extras
@@ -160,16 +160,16 @@
 
 # Items extra: Allow the client to request a custom number of items per page with an optional selector UI
 # See https://ddnexus.github.io/pagy/extras/items
-# require 'pagy/extras/items'
+require 'pagy/extras/items'
 # set to false only if you want to make :items_extra an opt-in variable
 # Pagy::DEFAULT[:items_extra] = false    # default true
-# Pagy::DEFAULT[:items_param] = :items   # default
-# Pagy::DEFAULT[:max_items]   = 100      # default
+Pagy::DEFAULT[:items_param] = :items   # default
+Pagy::DEFAULT[:max_items]   = 100      # default
 
 # Overflow extra: Allow for easy handling of overflowing pages
 # See https://ddnexus.github.io/pagy/extras/overflow
-# require 'pagy/extras/overflow'
-# Pagy::DEFAULT[:overflow] = :empty_page    # default  (other options: :last_page and :exception)
+require 'pagy/extras/overflow'
+Pagy::DEFAULT[:overflow] = :last_page    # default  (other options: :last_page and :exception)
 
 # Support extra: Extra support for features like: incremental, infinite, auto-scroll pagination
 # See https://ddnexus.github.io/pagy/extras/support
@@ -209,7 +209,7 @@
 #
 # Examples:
 # load the "de" built-in locale:
-# Pagy::I18n.load(locale: 'de')
+Pagy::I18n.load(locale: 'es')
 #
 # load the "de" locale defined in the custom file at :filepath:
 # Pagy::I18n.load(locale: 'de', filepath: 'path/to/pagy-de.yml')

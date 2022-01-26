@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_21_190542) do
+ActiveRecord::Schema.define(version: 2022_01_25_215443) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,8 +24,8 @@ ActiveRecord::Schema.define(version: 2022_01_21_190542) do
   end
 
   create_table "pokemons", force: :cascade do |t|
-    t.string "name"
-    t.integer "pokedex_number"
+    t.string "name", limit: 25
+    t.integer "pokedex_number", null: false
     t.integer "weight"
     t.integer "height"
     t.datetime "created_at", precision: 6, null: false
@@ -44,15 +44,20 @@ ActiveRecord::Schema.define(version: 2022_01_21_190542) do
   create_table "trainers", force: :cascade do |t|
     t.string "trainer_tag", limit: 25
     t.string "team_name"
-    t.string "email", null: false
-    t.string "password", limit: 30
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at", precision: 6
+    t.datetime "remember_created_at", precision: 6
+    t.index ["email"], name: "index_trainers_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_trainers_on_reset_password_token", unique: true
   end
 
   create_table "traits", force: :cascade do |t|
     t.string "trait_type"
-    t.string "name"
+    t.string "name", limit: 25
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
