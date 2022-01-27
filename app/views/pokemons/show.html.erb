@@ -1,0 +1,13 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @pokemon %>
+
+<div>
+  <% if trainer_signed_in? %>
+    <%= link_to "Edit this pokemon", edit_pokemon_path(@pokemon) %>
+    <%= button_to "Destroy this pokemon", @pokemon, method: :delete, class: "button is-danger is-outlined"%>
+  <%end%>
+  <div>
+    <%= link_to "Back to pokemons", pokemons_path %>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Traits</h1>
+<div class="right-side">
+  <% if trainer_signed_in? %>
+    <%= link_to "New trait", new_trait_path %>
+  <%end%>
+</div>
+<div id="traits">
+  <% @traits.each do |trait| %>
+    <%= render trait %>
+    <p>
+      <%= link_to "Show this trait", trait %>
+    </p>
+  <% end %>
+</div>
+<div class="tight-pagi has-text-centered" style="padding-bottom: 15px">
+  <%== pagy_bulma_nav(@pagy) %>
+  <%= link_to_unless_current "10",pokemons_path(items: 10)%>
+  <%= link_to_unless_current "25",pokemons_path(items: 25)%>
+  <%= link_to_unless_current "50",pokemons_path(items: 50)%>
+  <%= link_to_unless_current "100",pokemons_path(items: 100)%>
+</div>

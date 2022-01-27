@@ -1,0 +1,54 @@
+<p style="color: green"><%= notice %></p>
+<section class="section">
+  <div class ="container">
+    <h1 class="title has-text-centered is size-4">
+      Pokemons
+    </h1>
+    <div class="columns is-multiline is-vcentered">
+      <div class="column is-half-tablet is-1-desktop is-offset-2-desktop has-text-centered ">
+         <%= link_to "Gen 1", pokemons_path(gen: 1), class: "button is-link is-inverted" %>
+      </div>
+      <div class="column is-half-tablet is-1-desktop has-text-centered">
+         <%= link_to "Gen 2", pokemons_path(gen: 2), class: "button is-link is-inverted" %>
+      </div>
+      <div class="column is-half-tablet is-1-desktop has-text-centered">
+         <%= link_to "Gen 3", pokemons_path(gen: 3), class: "button is-link is-inverted" %>
+      </div>
+      <div class="column is-half-tablet is-1-desktop has-text-centered">
+         <%= link_to "Gen 4", pokemons_path(gen: 4), class: "button is-link is-inverted" %>
+      </div>
+      <div class="column is-half-tablet is-1-desktop has-text-centered">
+         <%= link_to "Gen 5", pokemons_path(gen: 5), class: "button is-link is-inverted" %>
+      </div>
+      <div class="column is-half-tablet is-1-desktop has-text-centered">
+         <%= link_to "Gen 6", pokemons_path(gen: 6), class: "button is-link is-inverted" %>
+      </div>
+      <div class="column is-half-tablet is-1-desktop has-text-centered">
+         <%= link_to "Gen 7", pokemons_path(gen: 7), class: "button is-link is-inverted" %>
+      </div>
+      <div class="column is-half-tablet is-1-desktop has-text-centered">
+         <%= link_to "Gen 8", pokemons_path(gen: 8), class: "button is-link is-inverted" %>
+      </div>
+    </div>
+    <div class="right-side">
+      <% if trainer_signed_in? %>
+        <%= link_to "New pokemon", new_pokemon_path%>
+      <%end%>
+    </div>
+     <div id=" pokemons" >
+      <% @pokemons.each do | pokemon| %>
+        <%= render pokemon %>
+        <p>
+          <%= link_to "Show this pokemon", pokemon %>
+        </p>
+      <% end %>
+    </div>
+  </div>
+</section>
+<div class="tight-pagi has-text-centered" style="padding-bottom: 15px">
+  <%== pagy_bulma_nav(@pagy) %>
+  <%= link_to_unless_current "10",pokemons_path(items: 10)%>
+  <%= link_to_unless_current "25",pokemons_path(items: 25)%>
+  <%= link_to_unless_current "50",pokemons_path(items: 50)%>
+  <%= link_to_unless_current "100",pokemons_path(items: 100)%>
+</div>
